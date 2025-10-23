@@ -1,0 +1,50 @@
+MP001,Tra sach tre han 1-3 ngay,10000
+MP002,Tra sach tre han 4-7 ngay,20000
+MP003,Tra sach tre han tren 7 ngay,30000
+MP004,Mat sach,100000
+MP005,Rach sach nhe,15000
+MP006,Rach sach nang,30000
+MP007,Viet ve trong sach,20000
+MP008,Lam uot sach,40000
+MP009,Lam ban sach,25000
+MP010,Khong tra sach,150000
+MP011,Lam hong bia sach,10000
+MP012,Lam rach trang bia,12000
+MP013,Sach bi lem muc,18000
+MP014,Khong ky ten vao phieu muon,5000
+MP015,Khong bao quan sach,30000
+MP016,Sach bi gap goc,5000
+MP017,Sach bi mo bia,7000
+MP018,Sach bi cong gay,15000
+MP019,Sach bi mat trang,20000
+MP020,Sach bi nam moc,25000
+MP021,Mat CD dinh kem,30000
+MP022,Mat DVD dinh kem,40000
+MP023,Khong tra dung chi nhanh,10000
+MP024,Khong tra dung han,15000
+MP025,Khong tra dung nhan vien phu trach,8000
+MP026,Khong xuat trinh phieu muon,5000
+MP027,Sach bi bien dang,25000
+MP028,Sach bi chay xem,60000
+MP029,Sach bi rach nhieu trang,35000
+MP030,Sach bi lam uot ke sach,10000
+MP031,Tra nham sach cua nguoi khac,15000
+MP032,Khong tuan thu noi quy thu vien,5000
+MP033,Khong deo the doc gia,8000
+MP034,Khong nop tien phat dung han,10000
+MP035,Sach bi dinh dau mo,20000
+MP036,Sach bi lem bui,7000
+MP037,Sach bi rach gay,25000
+MP038,Sach bi lem nuoc,15000
+MP039,Sach bi mat ma so,10000
+MP040,Khong tra sach sau khi nhac,20000
+MP041,Sach bi mat hoan toan,120000
+MP042,Sach bi rach lo trang,30000
+MP043,Sach bi mat tem dan,5000
+MP044,Khong nop sach dung dia diem,7000
+MP045,Khong tra dung ngay,15000
+MP046,Sach bi lem bong,6000
+MP047,Sach bi xoc nhe,3000
+MP048,Sach bi gay gay,8000
+MP049,Khong giu sach can than,5000
+MP050,Tra sach tre han nhieu lan,40000

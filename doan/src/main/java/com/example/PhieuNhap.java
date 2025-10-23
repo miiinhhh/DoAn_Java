@@ -1,7 +1,7 @@
 package com.example;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
+//import java.util.Date;
+//import java.text.SimpleDateFormat;
 
 public class PhieuNhap {
     private String maPhieu;

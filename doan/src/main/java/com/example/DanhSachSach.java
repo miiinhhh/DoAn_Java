@@ -10,9 +10,11 @@ public class DanhSachSach {
     public DanhSachSach(){
         
     }
-    public DanhSachSach(ArrayList<Sach> dss, DanhSachTacGia dstg){
+    public DanhSachSach(ArrayList<Sach> dss, DanhSachTacGia dstg, DanhSachTheLoai dstl, DanhSachNhaXuatBan dsnxb){
         this.dss = dss;
         this.dstg = dstg;
+        this.dstl = dstl;
+        this.dsnxb = dsnxb;
     }
     public void DocFileSach(String ten_file){
         try{

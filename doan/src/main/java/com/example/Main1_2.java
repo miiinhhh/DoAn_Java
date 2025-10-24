@@ -6,11 +6,11 @@ public class Main1_2 {
     Scanner sc = new Scanner(System.in);
     ArrayList<TacGia> dstgList = new ArrayList<>();
     DanhSachTacGia dstg = new DanhSachTacGia(dstgList);
-    DanhSachSach dss = new DanhSachSach(new ArrayList<>(), dstg);
-    dstg.setDanhSachSach(dss);  // gán ngược lại
     DanhSachTheLoai dstl = new DanhSachTheLoai();
-    dstl.setDanhSachSach(dss);
     DanhSachNhaXuatBan dsnxb = new DanhSachNhaXuatBan();
+    DanhSachSach dss = new DanhSachSach(new ArrayList<>(), dstg,dstl, dsnxb);
+    dstg.setDanhSachSach(dss);  // gán ngược lại
+    dstl.setDanhSachSach(dss);
     dsnxb.setDanhSachSach(dss);
 
 

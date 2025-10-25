@@ -14,7 +14,7 @@ public class NhaCungCap {
         this.diaChi = diaChi;
         this.soDienThoai = soDienThoai;
     }
-
+    
     public String getMaNCC() { return maNCC; }
     public void setMaNCC(String maNCC) { this.maNCC = maNCC; }
 

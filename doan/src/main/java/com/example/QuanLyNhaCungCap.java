@@ -8,7 +8,7 @@ public class QuanLyNhaCungCap {
         if (soLuong < ds.length) {
             ds[soLuong++] = ncc;
             return true;
-        }
+        } 
         return false;
     }
 
@@ -18,7 +18,7 @@ public class QuanLyNhaCungCap {
             return;
         }
         System.out.println("+--------------------+-----------------+-----------------+-----------------+-----------------+");
-        System.out.printf("%-10s %-20s %-25s %-15s\n", "Mã NCC", "Tên NCC", "Địa chỉ", "SĐT");
+        System.out.printf("%-15s %-17s %-17s %17s\n", "Ma NCC", "Ten NCC", "Dia chi", "SDT");
         System.out.println("+--------------------+-----------------+-----------------+-----------------+-----------------+");
         for (int i = 0; i < soLuong; i++) {
             System.out.println(ds[i]);

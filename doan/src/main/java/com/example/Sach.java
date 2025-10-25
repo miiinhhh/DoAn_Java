@@ -16,33 +16,10 @@ class Ngay {
     }
     public static Ngay parseNgay(String s) {
     String[] parts = s.split("/");
-    if (parts.length != 3) {
-        System.out.println("Dinh dang ngay khong hop le: " + s);
-        return null; 
-    }
 
     int d = Integer.parseInt(parts[0]);
     int m = Integer.parseInt(parts[1]);
     int y = Integer.parseInt(parts[2]);
-
-    if (m < 1 || m > 12 || d < 1 || d > 31) {
-        System.out.println("Ngay hoac thang khong hop le: " + s);
-        return null;
-    }
-
-    if ((m == 4 || m == 6 || m == 9 || m == 11) && d > 30) {
-        System.out.println("Thang " + m + " chi co 30 ngay!");
-        return null;
-    }
-
-    if (m == 2) {
-        boolean namNhuan = (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);
-        int maxNgay = namNhuan ? 29 : 28;
-        if (d > maxNgay) {
-            System.out.println("Thang 2 nam " + y + " chi co " + maxNgay + " ngay!");
-            return null;
-        }
-    }
 
     return new Ngay(d, m, y);
 }

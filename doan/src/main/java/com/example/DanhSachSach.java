@@ -89,6 +89,26 @@ public class DanhSachSach {
             System.out.println(s);
         }
     }
+    public static boolean namNhuan(int y) {
+        return (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);
+    }
+    public static boolean kiemTraHopLe(int d, int m, int y) {
+        if (y <= 0 || m < 1 || m > 12 || d < 1) return false;
+
+        int maxDay;
+        switch (m) {
+            case 4: case 6: case 9: case 11:
+                maxDay = 30;
+                break;
+            case 2:
+                maxDay = namNhuan(y) ? 29 : 28;
+                break;
+            default:
+                maxDay = 31;
+        }
+
+        return d <= maxDay;
+    }
     Sach NhapThongTinSach(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap lua chon sach (1: Sach giao khoa, 2: Sach tham khoa)");
@@ -106,7 +126,17 @@ public class DanhSachSach {
         System.out.print("Nhap ma nxb: ");
         String ma_nxb = sc.nextLine();
         System.out.print("Nhap ngay xuat ban (ngay thang nam): ");
-        int d = sc.nextInt(), m = sc.nextInt(), y = sc.nextInt();
+        int d,m,y;
+        boolean hopLe;
+        do {
+            d = sc.nextInt();
+            m = sc.nextInt();
+            y = sc.nextInt();
+            hopLe = kiemTraHopLe(d, m, y);
+            if (!hopLe) {
+                System.out.println("Ngay thang nam khong hop le, vui long nhap lai!\n");
+            }
+        } while (!hopLe);
         Ngay date = new Ngay(d,m,y);
         sc.nextLine();
         Sach sach_moi =null;

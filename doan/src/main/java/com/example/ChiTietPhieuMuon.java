@@ -28,32 +28,50 @@ public class ChiTietPhieuMuon{
      public void setSoLuong(int soluong) { this.soluong = soluong;}
 
      Scanner sc = new Scanner(System.in);
-     public void nhap(){
-        System.out.print("Nhap ma phieu muon: ");
-        while (true) {
-           maphieumuon = sc.nextLine().trim();
-           if (!maphieumuon.isEmpty()) break;
-           System.out.print("Khong duoc de trong. Nhap ma phieu muon: ");
-       }
-        System.out.print("Nhap ma sach: ");
-        while (true) {
-           masach = sc.nextLine().trim();
-           if (!masach.isEmpty()) break;
-           System.out.print("Khong duoc de trong. Nhap ma sach: ");
-       }
-            
-        while(true){
-            System.out.print("Nhap so luong: ");
-            String s = sc.nextLine().trim();
-            try{
-                soluong = Integer.parseInt(s);
-                if(soluong < 0){ System.out.println("Vui long nhap so luong >= 0 !!"); continue;}
-                break;
-            }catch(NumberFormatException e){
-                System.out.println("Vui long nhap so nguyen");
-            }
+public void nhap(DanhSachPhieuMuon dspm, DanhSachSach dss){
+    System.out.print("Nhap ma phieu muon: ");
+    while (true) {
+        maphieumuon = sc.nextLine().trim();
+        if (maphieumuon.isEmpty()) {
+            System.out.print("Khong duoc de trong. Nhap ma phieu muon: ");
+            continue;
         }
-     }
+        if (dspm != null && dspm.timkiemma(maphieumuon) == -1) {
+            System.out.print("Ma phieu muon khong ton tai. Nhap lai: ");
+            continue;
+        }
+        break;
+    }
+    
+
+    System.out.print("Nhap ma sach: ");
+    while (true) {
+        masach = sc.nextLine().trim();
+        if (masach.isEmpty()) {
+            System.out.print("Khong duoc de trong. Nhap ma sach: ");
+            continue;
+        }
+        if (dss != null && dss.timkiemma(masach) == -1) { 
+            System.out.print("Ma sach khong ton tai. Nhap lai: ");
+            continue;
+        }
+        break;
+      }
+    while(true){
+        System.out.print("Nhap so luong: ");
+        String s = sc.nextLine().trim();
+        try{
+            soluong = Integer.parseInt(s);
+            if(soluong < 0){ 
+                System.out.println("Vui long nhap so luong >= 0 !!"); 
+                continue;
+            }
+            break;
+        }catch(NumberFormatException e){
+            System.out.println("Vui long nhap so nguyen");
+        }
+      }
+   }
      public void xuat(){
         System.out.printf("| %-15s | %-15s | %-10d |%n", maphieumuon, masach, soluong);
     } 

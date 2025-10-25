@@ -1,7 +1,12 @@
 package com.example;
 
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
 public class DanhSachSach {
     private ArrayList<Sach> dss = new ArrayList<>();
     private DanhSachTacGia dstg;
@@ -384,5 +389,15 @@ public class DanhSachSach {
             System.out.println("Khong tim thay sach co ma "+ma);
         }
     }
+    public int timkiemma(String ma) {
+    if (ma == null) return -1;
+    ma = ma.trim();
+    for (int i = 0; i < dss.size(); i++) {
+        if (dss.get(i).getMa_sach().equals(ma)) {
+            return i;
+        }
+    }
+    return -1;
+}
 }
 

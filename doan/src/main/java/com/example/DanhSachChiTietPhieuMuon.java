@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
 public class DanhSachChiTietPhieuMuon {
     ChiTietPhieuMuon[] ds = new ChiTietPhieuMuon[0];
     Scanner sc = new Scanner(System.in);
@@ -14,7 +15,9 @@ public class DanhSachChiTietPhieuMuon {
     public DanhSachChiTietPhieuMuon(DanhSachChiTietPhieuMuon other){
         ds = Arrays.copyOf(other.ds, other.ds.length);
     }
-    public void nhap(){
+    
+   
+    public void nhap(DanhSachPhieuMuon dspm, DanhSachSach dss){
         System.out.print("Nhap so luong chi tiet phieu muon: ");
         int bd = ds.length;
         int k ;
@@ -31,7 +34,7 @@ public class DanhSachChiTietPhieuMuon {
         ds = Arrays.copyOf(ds,ds.length + k);
         for(int i = bd; i < ds.length; i++){
             ds[i] = new ChiTietPhieuMuon();
-            ds[i].nhap();
+            ds[i].nhap(dspm, dss); 
         }
     }
     public void xuatt(){
@@ -51,35 +54,54 @@ public class DanhSachChiTietPhieuMuon {
         xuatd();
     }
     public void them(ChiTietPhieuMuon ctpm){
+        if (timkiemma(ctpm.getMaPhieuMuon(), ctpm.getMaSach()) != -1) {
+             System.out.println("Chi tiet phieu muon nay da ton tai.");
+             return;
+        }
         ds = Arrays.copyOf(ds,ds.length + 1);
         ds[ds.length -1] = new ChiTietPhieuMuon(ctpm);
         System.out.println("Them thanh cong");
     }
-    public void them(){
-        ds = Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1] = new ChiTietPhieuMuon();
-        System.out.println("Nhap thong tin chi tiet phieu muon them: ");
-        ds[ds.length-1].nhap();
-        System.out.println("Them thanh cong");
+    
+
+    public void them(DanhSachPhieuMuon dspm, DanhSachSach dss){
+       ChiTietPhieuMuon ctpm_moi = new ChiTietPhieuMuon();
+       System.out.println("Nhap thong tin chi tiet phieu muon them: ");
+       ctpm_moi.nhap(dspm, dss);
+       String mapm = ctpm_moi.getMaPhieuMuon();
+       String mas = ctpm_moi.getMaSach();
+       if(timkiemma(mapm, mas) != -1) { 
+          System.out.println("Loi: Chi tiet phieu muon nay da ton tai. Huy them.");
+          return; 
+        }
+       ds = Arrays.copyOf(ds,ds.length+1);
+       ds[ds.length-1] = ctpm_moi;
+       System.out.println("Them thanh cong");
     }
-    public int timkiemma(String mapm) {
-        if (mapm == null) return -1;
+    
+    public int timkiemma(String mapm, String mas) {
+        if (mapm == null || mas == null) return -1;
         mapm = mapm.trim();
+        mas = mas.trim();
         for (int i = 0; i < ds.length; i++) {
             ChiTietPhieuMuon ct = ds[i];
             if (ct == null) continue;
-            if (mapm.equals(ct.getMaPhieuMuon())) return i;
+            String a = ct.getMaPhieuMuon();
+            String b = ct.getMaSach();
+            if (a != null && b != null && mapm.equals(a.trim()) && mas.equals(b.trim())) return i;
         }
         return -1;
     }
+    
     private void inmenusua(){
         System.out.println("\nBan muon sua thong tin gi ?");
-        System.out.println("1. Sua ma sach");
+        System.out.println("1. Sua ma sach"); 
         System.out.println("2. Sua so luong");
         System.out.println("0. Quay lai");
         System.out.print("Lua chon cua ban :");
     }
-    public void sua(){
+
+    public void sua(DanhSachSach dss){
         if(ds.length == 0){
             System.out.println("Danh sach chi tiet phieu muon dang rong !!");
             return;
@@ -88,13 +110,13 @@ public class DanhSachChiTietPhieuMuon {
             System.out.print("\nNhap ma phieu muon (Nhan Enter de thoat): ");
             String mapm = sc.nextLine().trim();
             if(mapm.isEmpty()) return;
-            System.out.print("Nhap ma sach: ");
+            System.out.print("Nhap ma sach hien tai: ");
             String mas = sc.nextLine().trim();
             if(mas.isEmpty()){
                 System.out.println("Ma sach khong duoc de trong !!");
                 continue;
             }
-            int idx = timkiemma(mapm);
+            int idx = timkiemma(mapm, mas); 
             if(idx == -1){
                 System.out.println("Khong tim thay phieu chi tiet: "+ mapm + "," + mas);
                 continue;
@@ -109,6 +131,12 @@ public class DanhSachChiTietPhieuMuon {
                         String newMa = sc.nextLine().trim();
                         if(newMa.isEmpty()){
                             System.out.println("Ma sach khong duoc de trong !!");
+                        }
+                         else if (dss != null && dss.timkiemma(newMa) == -1) {
+                            System.out.println("Ma sach moi khong ton tai!");
+                         }
+                        else if (timkiemma(mapm, newMa) != -1 && !newMa.equals(mas)){ 
+                            System.out.println("Ma sach moi da ton tai trong phieu muon nay!");
                         }
                         else {
                             ct.setMaSach(newMa);
@@ -190,21 +218,22 @@ public class DanhSachChiTietPhieuMuon {
         }
     }
 
-    
     public void xoa(){
-            System.out.println("Nhap ma phieu muon can xoa: ");
-            String ma = sc.nextLine().trim();
-            xoa(ma);    
+            System.out.print("Nhap ma phieu muon can xoa: ");
+            String mapm = sc.nextLine().trim();
+            System.out.print("Nhap ma sach can xoa: ");
+            String mas = sc.nextLine().trim();
+            xoa(mapm, mas);    
         }
-        public boolean xoa(String mapm) {
-            int idx = timkiemma(mapm);
+        public boolean xoa(String mapm, String mas) {
+            int idx = timkiemma(mapm, mas);
             if (idx == -1) {
-                System.out.println("Khong tim thay ma: " + mapm);
+                System.out.println("Khong tim thay chi tiet phieu muon: " + mapm + ", " + mas);
                 return false;
             }
             for (int j = idx; j < ds.length - 1; j++) ds[j] = ds[j + 1];
             ds = Arrays.copyOf(ds, ds.length - 1);
-            System.out.println("Xoa thanh cong: " + mapm);
+            System.out.println("Xoa thanh cong: " + mapm + ", " + mas);
             return true;
         }
 

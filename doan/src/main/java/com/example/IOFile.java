@@ -55,11 +55,12 @@ public class IOFile {
         try (BufferedReader brPhieu = new BufferedReader(new FileReader(phieuFile))) {
             String line;
             while ((line = brPhieu.readLine()) != null && soPhieu < maxPhieu) {
-                String[] p = line.split(",", -1);
+                String[] p = line.split(",");
                 if (p.length >= 3) {
                     String maPhieu = p[0];
                     String ngay = p[1];
                     String maNCC = p[2];
+
                     NhaCungCap ncc = qlNCC.layTheoMa(maNCC);
                     dsPhieu[soPhieu++] = new PhieuNhap(maPhieu, ngay, ncc);
                 }

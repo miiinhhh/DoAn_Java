@@ -51,7 +51,7 @@ public class PhieuNhap {
 
     @Override
     public String toString() {
-        return String.format("%-10s %-12s %-10s %12.2f", maPhieu, ngayNhap, (nhaCungCap!=null? nhaCungCap.getMaNCC() : "null"), tinhTongTien());
+        return String.format("%-15s %-17s %-17s %17f", maPhieu, ngayNhap, (nhaCungCap!=null? nhaCungCap.getTenNCC() : "null"), tinhTongTien());
     }
 
     public void hienThiChiTiet() {

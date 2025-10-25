@@ -25,7 +25,7 @@ public class QuanLyPhieuNhap {
             return;
         }
         System.out.println("+--------------------+-----------------+-----------------+-----------------+-----------------+");
-        System.out.printf("%-10s %-12s %-10s %12s\n", "Mã PN", "Ngày", "MãNCC", "Tổng tiền");
+        System.out.printf("%-15s %-15s %-15s %15s\n", "Ma PN", "Ngay", "Ten NCC", "Tong tien");
         System.out.println("+--------------------+-----------------+-----------------+-----------------+-----------------+");
         for (int i = 0; i < soLuong; i++) {
             System.out.println(ds[i]);

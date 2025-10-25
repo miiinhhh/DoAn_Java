@@ -72,7 +72,17 @@ public class DanhSachTacGia {
         System.out.print("Nhap gioi tinh tac gia: ");
         String gt = sc.nextLine();
         System.out.print("Nhap ngay sinh tac gia: ");
-        int d = sc.nextInt(), m = sc.nextInt(), y = sc.nextInt();
+        int d,m,y;
+        boolean hopLe;
+        do {
+            d = sc.nextInt();
+            m = sc.nextInt();
+            y = sc.nextInt();
+            hopLe = dss.kiemTraHopLe(d, m, y);
+            if (!hopLe) {
+                System.out.println("Ngay thang nam khong hop le, vui long nhap lai!\n");
+            }
+        } while (!hopLe);
         Ngay date = new Ngay(d,m,y);
         sc.nextLine();
         TacGia tac_gia_moi = new TacGia(ma,ten,gt,date);

@@ -14,10 +14,10 @@ public class Main1_2 {
     dsnxb.setDanhSachSach(dss);
 
 
-        dstg.DocFileTacGia("D:\\\\DOAN_JAVA\\\\DoAn_Java\\\\doan\\\\src\\\\main\\\\java\\\\com\\\\example\\\\TacGia.txt");
-        dss.DocFileSach("D:\\DOAN_JAVA\\DoAn_Java\\doan\\src\\main\\java\\com\\example\\Sach.txt");
-        dstl.DocFileTheLoai("D:\\DOAN_JAVA\\DoAn_Java\\doan\\src\\main\\java\\com\\example\\TheLoai.txt");
-        dsnxb.DocFileNhaXuatBan("D:\\DOAN_JAVA\\DoAn_Java\\doan\\src\\main\\java\\com\\example\\NhaXuatBan.txt");
+        dstg.DocFileTacGia("src/main/java/com/example/TacGia.txt");
+        dss.DocFileSach("src/main/java/com/example/Sach.txt");
+        dstl.DocFileTheLoai("src/main/java/com/example/TheLoai.txt");
+        dsnxb.DocFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
 
         int choice;
         do {

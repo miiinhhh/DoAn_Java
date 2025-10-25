@@ -8,7 +8,7 @@ public class QuanLyNhaCungCap {
         if (soLuong < ds.length) {
             ds[soLuong++] = ncc;
             return true;
-        }
+        } 
         return false;
     }
 

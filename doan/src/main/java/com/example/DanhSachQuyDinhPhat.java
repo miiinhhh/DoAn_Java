@@ -144,7 +144,7 @@ public class DanhSachQuyDinhPhat{
             return true;
         }
     public void docFile(){
-        File file = new File("Quydinhphat.txt");
+        File file = new File("src/main/java/com/example/Quydinhphat.txt");
         if(!file.exists()){
             System.out.println("File không tồn tại !!");
             return;
@@ -175,7 +175,7 @@ public class DanhSachQuyDinhPhat{
         }    
     }
     public void ghiFile(){
-        try(PrintWriter w = new PrintWriter("Quydinhphat.txt","UTF-8")){
+        try(PrintWriter w = new PrintWriter("src/main/java/com/example/Quydinhphat.txt","UTF-8")){
             for(QuyDinhPhat qdp : ds){
                 w.println(qdp.toFile());
             }

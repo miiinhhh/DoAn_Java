@@ -187,7 +187,7 @@
             System.out.printf("+-----------------+-----------------+-----------------+-----------------+------------+%n");
         }
         public void docFile(DanhSachQuyDinhPhat dsqdp){
-            File file = new File("Phieuphat.txt");
+            File file = new File("src/main/java/com/example/Phieuphat.txt");
             if(!file.exists()){ System.out.println("File khong ton tai !!"); return;}
             ds = new PhieuPhat[0];
             try (Scanner f = new Scanner(file,"UTF-8")){
@@ -219,7 +219,7 @@
             }
         }
         public void ghiFile() {
-            try (PrintWriter w = new PrintWriter("Phieuphat.txt", "UTF-8")) {
+            try (PrintWriter w = new PrintWriter("src/main/java/com/example/Phieuphat.txt", "UTF-8")) {
                 for (PhieuPhat p : ds) {
                     w.println(p.toFile());
                 }

@@ -178,7 +178,7 @@ public class DanhSachChiTietPhieuMuon {
     }
     
     public void docFile(){
-        File file = new File("Chitietphieumuon.txt");
+        File file = new File("src/main/java/com/example/Chitietphieumuon.txt");
         if(!file.exists()){
             System.out.println("File khong ton tai.");
             return;
@@ -208,7 +208,7 @@ public class DanhSachChiTietPhieuMuon {
         }
     }
     public void ghiFile(){
-        try(PrintWriter w = new PrintWriter("Chitietphieumuon.txt","UTF-8")){
+        try(PrintWriter w = new PrintWriter("src/main/java/com/example/Chitietphieumuon.txt","UTF-8")){
             for(ChiTietPhieuMuon ctpm : ds){
                 w.println(ctpm.toFile());
             }

@@ -14,20 +14,13 @@ public class PhieuPhat{
         maphat="";
         tienphat=0;
     }
-    public PhieuPhat(String maphieuphat, String madocgia, String maphieumuon, String maphat, DanhSachQuyDinhPhat dsqdp){
-        this.maphieuphat=maphieuphat;
-        this.madocgia=madocgia;
-        this.maphieumuon=maphieumuon;
-        this.maphat=maphat;
-        QuyDinhPhat qdp = dsqdp.layQuyDinhPhatTuMa(maphat);
-        if(qdp != null){
-            this.tienphat = qdp.getTienPhat();
-        }
-        else{
-            this.tienphat =0;
-            System.err.println("Canh bao ma phat " + maphat + " khong hop le, tien phat bang 0.");
-        }
-    }
+public PhieuPhat(String maphieuphat, String madocgia, String maphieumuon, String maphat, int tienphat){
+    this.maphieuphat = maphieuphat.trim();
+    this.madocgia = madocgia.trim();
+    this.maphieumuon = maphieumuon.trim();
+    this.maphat = maphat.trim();
+    this.tienphat = tienphat;
+}
     public PhieuPhat(PhieuPhat pp){
         this.maphieuphat = pp.maphieuphat;
         this.madocgia = pp.madocgia;

@@ -54,11 +54,17 @@
             ds[ds.length-1] = new PhieuPhat(p);
             System.out.println("Them thanh cong");
         }
+
         public void them(DanhSachQuyDinhPhat dsqdp){
-            ds = Arrays.copyOf(ds,ds.length+1);
-            ds[ds.length-1] = new PhieuPhat();
+            PhieuPhat newPhat = new PhieuPhat();
             System.out.println("Nhap thong tin phieu phat can them: ");
-            ds[ds.length-1].nhap(dsqdp);
+            newPhat.nhap(dsqdp); 
+            if(timkiemma(newPhat.getMaPhieuPhat()) != -1){
+                System.out.println("Ma phieu phat da ton tai !! Khong them duoc.");
+                return; 
+            }
+            ds = Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1] = newPhat;
             System.out.println("Them thanh cong");
         }
         public int timkiemma(String ma){
@@ -208,9 +214,7 @@
                             System.out.println("Dong loi (so tien): "+line); continue;
                         }
                         ds = Arrays.copyOf(ds,ds.length+1);
-                        PhieuPhat pp = new PhieuPhat(mpp, mdg, mpm, mp, dsqdp);
-                        pp.setTienPhat(tp);
-                        ds[ds.length-1] = pp;
+                        ds[ds.length-1] = new PhieuPhat(mpp, mdg, mpm, mp, tp);
                     }
                 }
                 System.out.println("Doc file thanh cong");

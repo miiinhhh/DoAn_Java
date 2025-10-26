@@ -12,8 +12,8 @@ public class QuyDinhPhat{
         tienphat=0;
     }
     public QuyDinhPhat(String maphat, String noidung, int tienphat){
-        this.maphat = maphat;
-        this.noidung = noidung;
+        this.maphat = maphat.trim();
+        this.noidung = noidung.trim();
         this.tienphat=tienphat;
     }
     public QuyDinhPhat(QuyDinhPhat qd){

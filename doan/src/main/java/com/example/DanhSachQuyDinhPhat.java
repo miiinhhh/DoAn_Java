@@ -51,12 +51,17 @@ public class DanhSachQuyDinhPhat{
         System.out.println("Them thanh cong");
     }
     public void them(){
-        ds = Arrays.copyOf(ds,ds.length+1);
-        ds[ds.length-1] = new QuyDinhPhat();
+        QuyDinhPhat newQuyDinh = new QuyDinhPhat(); 
         System.out.println("Nhap thong tin quy dinh phat can them: ");
-        ds[ds.length-1].nhap();
-        System.out.println("Them thanh cong");
-    }
+        newQuyDinh.nhap(); 
+        if(timkiemma(newQuyDinh.getMaPhat()) != -1){
+             System.out.println("Ma phat da ton tai !! Khong them duoc.");
+             return; 
+            }
+            ds = Arrays.copyOf(ds,ds.length+1);
+            ds[ds.length-1] = newQuyDinh; 
+            System.out.println("Them thanh cong");
+        }
     public int timkiemma(String ma){
         if(ma == null) return -1;
         ma = ma.trim();

@@ -132,7 +132,7 @@ public class DanhSachDocGia {
     }
 
     public void ghifile() {
-        try (PrintWriter pw = new PrintWriter(new File("DocGia.txt"))) {
+        try (PrintWriter pw = new PrintWriter(new File("src/main/java/com/example/DocGia.txt"))) {
             for (DocGia dg : ds)
                 pw.println(dg.toString());
             System.out.println("Da ghi vao file DocGia.txt");
@@ -142,7 +142,7 @@ public class DanhSachDocGia {
     }
 
     public void docfile() {
-        File file = new File("DocGia.txt");
+        File file = new File("src/main/java/com/example/DocGia.txt");
         if (!file.exists()) {
             System.out.println("File khong ton tai!");
             return;

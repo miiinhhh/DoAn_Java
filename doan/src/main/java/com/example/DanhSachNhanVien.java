@@ -194,7 +194,7 @@ public class DanhSachNhanVien {
     }
 
     public void ghiFile() {
-        try (PrintWriter pw = new PrintWriter(new File("Nhanvien.txt"))) {
+        try (PrintWriter pw = new PrintWriter(new File("src/main/java/com/example/Nhanvien.txt"))) {
             for (NhanVien nv : ds)
                 pw.println(nv.toString());
             System.out.println("Da ghi vao file Nhanvien.txt");
@@ -204,7 +204,7 @@ public class DanhSachNhanVien {
     }
 
     public void docFile() {
-        File file = new File("Nhanvien.txt");
+        File file = new File("src/main/java/com/example/Nhanvien.txt");
         if (!file.exists()) {
             System.out.println("File khong ton tai!");
             return;

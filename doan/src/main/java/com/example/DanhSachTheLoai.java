@@ -61,7 +61,7 @@ public class DanhSachTheLoai {
         Scanner sc = new Scanner(System.in);
         TheLoai tl_moi = NhapThongTinTheLoaiCoThamSo(ma_tl);
         dstl.add(tl_moi);
-        GhiFileTheLoai("TheLoai.txt");
+        GhiFileTheLoai("src/main/java/com/example/TheLoai.txt");
         System.out.println("Da them the loai moi co ma: " + tl_moi.getMa_the_loai());
     }
     public void XemTheLoai(){
@@ -135,7 +135,7 @@ public class DanhSachTheLoai {
                     return;
                 }
                 dstl.set(i,tl_moi); //thay the the loai cu thanh the loai moi
-                GhiFileTheLoai("TheLoai.txt");
+                GhiFileTheLoai("src/main/java/com/example/TheLoai.txt");
                 System.out.println("Da sua the loai co ma "+ma);
                 found = true;
                 break;
@@ -150,14 +150,14 @@ public class DanhSachTheLoai {
         Scanner sc = new Scanner(System.in);
         TheLoai the_loai_moi = NhapThongTinTheLoai();
         dstl.add(the_loai_moi);
-        GhiFileTheLoai("TheLoai.txt");
+        GhiFileTheLoai("src/main/java/com/example/TheLoai.txt");
         System.out.println("Da them the loai moi co ma: " + the_loai_moi.getMa_the_loai());
         System.out.println("Nhap it nhat 1 quyen sach cho the loai nay: ");
         while(true){
             Sach sach_moi = dss.NhapThongTinSach();
             sach_moi.setMa_tac_gia(the_loai_moi.getMa_the_loai());
             dss.ThemSachTheoMa(sach_moi);
-            dss.GhiFileSach("Sach.txt");
+            dss.GhiFileSach("src/main/java/com/example/Sach.txt");
             System.out.println("Ban co muon them sach khac cho the loai nay khong? (c/k): ");
             String chon = sc.nextLine();
             if(!chon.equals("c")){
@@ -169,7 +169,7 @@ public class DanhSachTheLoai {
         Scanner sc = new Scanner(System.in);
         TheLoai the_loai_moi = NhapThongTinTheLoaiCoThamSo(ma_tl);
         dstl.add(the_loai_moi);
-        GhiFileTheLoai("TheLoai.txt");
+        GhiFileTheLoai("src/main/java/com/example/TheLoai.txt");
         System.out.println("Da them the loai moi co ma: " + the_loai_moi.getMa_the_loai());
     }
     public void TimTheLoai(){
@@ -210,7 +210,7 @@ public class DanhSachTheLoai {
         if(!found){
             System.out.println("Khong tim thay ma "+ma+ " de xoa");
         }else{
-            GhiFileTheLoai("TheLoai.txt");
+            GhiFileTheLoai("src/main/java/com/example/TheLoai.txt");
         }
     }
     

@@ -344,7 +344,7 @@ public class DanhSachSach {
                 }
                 
                 dss.set(i,sach_moi); //thay the sach cu thanh sach moi
-                GhiFileSach("Sach.txt");
+                GhiFileSach("src/main/java/com/example/Sach.txt");
                 System.out.println("Da sua sach co ma "+ma);
                 found = true;
                 break;
@@ -396,11 +396,11 @@ public class DanhSachSach {
             }
         }
         dss.add(sach_moi);
-        GhiFileSach("Sach.txt");
+        GhiFileSach("src/main/java/com/example/Sach.txt");
     }
     public void ThemSachTheoMa(Sach s) {
         dss.add(s);
-        GhiFileSach("Sach.txt");
+        GhiFileSach("src/main/java/com/example/Sach.txt");
     }
 
     //xoa theo ma nhap tu ban phim
@@ -421,7 +421,7 @@ public class DanhSachSach {
         if(!found){
             System.out.println("Khong tim thay ma "+ma);
         }else{
-            GhiFileSach("Sach.txt");
+            GhiFileSach("src/main/java/com/example/Sach.txt");
         }
     }
     //xoa theo ma sach tu dong
@@ -435,7 +435,7 @@ public class DanhSachSach {
             }
         }
         if(found){
-            GhiFileSach("Sach.txt");
+            GhiFileSach("src/main/java/com/example/Sach.txt");
         }
     }
 

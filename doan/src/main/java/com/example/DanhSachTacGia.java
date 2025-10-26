@@ -139,14 +139,14 @@ public class DanhSachTacGia {
         Scanner sc = new Scanner(System.in);
         TacGia tac_gia_moi = NhapThongTinTacGia();
         dstg.add(tac_gia_moi);
-        GhiFileTacGia("TacGia.txt");
+        GhiFileTacGia("src/main/java/com/example/TacGia.txt");
         System.out.println("Da them tac gia moi co ma: " + tac_gia_moi.getMa_tac_gia());
         System.out.println("Nhap it nhat 1 quyen sach cho tac gia nay: ");
         while(true){
             Sach sach_moi = dss.NhapThongTinSach();
             sach_moi.setMa_tac_gia(tac_gia_moi.getMa_tac_gia());
             dss.ThemSachTheoMa(sach_moi);
-            dss.GhiFileSach("Sach.txt");
+            dss.GhiFileSach("src/main/java/com/example/Sach.txt");
             System.out.println("Ban co muon them sach khac cho tac gia nay khong? (c/k): ");
             String chon = sc.nextLine();
             if(!chon.equals("c")){
@@ -158,7 +158,7 @@ public class DanhSachTacGia {
         Scanner sc = new Scanner(System.in);
         TacGia tac_gia_moi = NhapThongTinTacGiaCoThamSo(ma_tg);
         dstg.add(tac_gia_moi);
-        GhiFileTacGia("TacGia.txt");
+        GhiFileTacGia("src/main/java/com/example/TacGia.txt");
         System.out.println("Da them tac gia moi co ma: " + tac_gia_moi.getMa_tac_gia());
     }
 
@@ -166,7 +166,7 @@ public class DanhSachTacGia {
         Scanner sc = new Scanner(System.in);
         TacGia tac_gia_moi = NhapThongTinTacGiaCoThamSo(ma_tg);
         dstg.add(tac_gia_moi);
-        GhiFileTacGia("TacGia.txt");
+        GhiFileTacGia("src/main/java/com/example/TacGia.txt");
         System.out.println("Da them tac gia moi co ma: " + tac_gia_moi.getMa_tac_gia());
     }
     
@@ -191,7 +191,7 @@ public class DanhSachTacGia {
         if(!found){
             System.out.println("Khong tim thay ma "+ma+ " de xoa");
         }else{
-            GhiFileTacGia("TacGia.txt");
+            GhiFileTacGia("src/main/java/com/example/TacGia.txt");
         }
     }
     public void TimTacGia(){
@@ -228,7 +228,7 @@ public class DanhSachTacGia {
                     return;
                 }
                 dstg.set(i,tg_moi); //thay the the loai cu thanh the loai moi
-                GhiFileTacGia("TacGia.txt");
+                GhiFileTacGia("src/main/java/com/example/TacGia.txt");
                 System.out.println("Da sua tac gia co ma "+ma);
                 found = true;
                 break;

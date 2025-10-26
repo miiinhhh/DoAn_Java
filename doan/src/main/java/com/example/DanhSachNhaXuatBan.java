@@ -121,7 +121,7 @@ public class DanhSachNhaXuatBan {
                     return;
                 }
                 dsnxb.set(i,nxb_moi); //thay the nxb cu thanh nxb moi
-                GhiFileNhaXuatBan("NhaXuatBan.txt");
+                GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
                 System.out.println("Da sua nha xuat ban co ma "+ma);
                 found = true;
                 break;
@@ -135,21 +135,21 @@ public class DanhSachNhaXuatBan {
         Scanner sc = new Scanner(System.in);
         NhaXuatBan nxb_moi = NhapThongTinNhaXuatBanCoThamSo(ma_nxb);
         dsnxb.add(nxb_moi);
-        GhiFileNhaXuatBan("NhaXuatBan.txt");
+        GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
         System.out.println("Da them nha xuat ban moi co ma: " + nxb_moi.getMa_nxb());
     }
     public void ThemNhaXuatBan(){
         Scanner sc = new Scanner(System.in);
         NhaXuatBan nxb_moi = NhapThongTinNhaXuatBan();
         dsnxb.add(nxb_moi);
-        GhiFileNhaXuatBan("NhaXuatBan.txt");
+        GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
         System.out.println("Da them nha xuat moi co ma: " + nxb_moi.getMa_nxb());
         System.out.println("Nhap it nhat 1 quyen sach cho nha xuat ban nay: ");
         while(true){
             Sach sach_moi = dss.NhapThongTinSach();
             sach_moi.setMa_nxb(nxb_moi.getMa_nxb());
             dss.ThemSachTheoMa(sach_moi);
-            dss.GhiFileSach("Sach.txt");
+            dss.GhiFileSach("src/main/java/com/example/Sach.txt");
             System.out.println("Ban co muon them sach khac cho nha xuat ban nay khong? (c/k): ");
             String chon = sc.nextLine();
             if(!chon.equals("c")){
@@ -161,7 +161,7 @@ public class DanhSachNhaXuatBan {
         Scanner sc = new Scanner(System.in);
         NhaXuatBan nxb_moi = NhapThongTinNhaXuatBanCoThamSo(ma_nxb);
         dsnxb.add(nxb_moi);
-        GhiFileNhaXuatBan("NhaXuatBan.txt");
+        GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
         System.out.println("Da them nha xuat moi co ma: " + nxb_moi.getMa_nxb());
     }
 
@@ -186,7 +186,7 @@ public class DanhSachNhaXuatBan {
         if(!found){
             System.out.println("Khong tim thay ma "+ma+ " de xoa");
         }else{
-            GhiFileNhaXuatBan("NhaXuatBan.txt");
+            GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
         }
     }
     public void TimNhaXuatBan(){

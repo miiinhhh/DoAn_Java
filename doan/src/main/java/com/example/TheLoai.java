@@ -15,17 +15,7 @@ public class TheLoai {
         this.ten_the_loai=ten_the_loai;
         this.mo_ta=mo_ta;
     }
-    public void themSach(Sach s){
-        if(!dsSach.contains(s)) dsSach.add(s);
-    }
 
-    public void xoaSach(Sach s){
-        dsSach.remove(s);
-    }
-
-    public ArrayList<Sach> getDsSach(){
-        return dsSach;
-    }
     public String getMa_the_loai() {
         return ma_the_loai;
     }

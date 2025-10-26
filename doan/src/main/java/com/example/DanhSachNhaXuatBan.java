@@ -62,8 +62,24 @@ public class DanhSachNhaXuatBan {
     NhaXuatBan NhapThongTinNhaXuatBan(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap thong tin nha xuat ban: ");
-        System.out.print("Nhap ma nha xuat ban: ");
-        String ma = sc.nextLine();
+        String ma;
+        boolean ma_hop_le  = false;
+        do {
+            System.out.print("Nhap ma nha xuat ban (NXBxx): ");
+            ma = sc.nextLine().trim();
+            if (!ma.matches("NXB\\d+")) {
+                System.out.println("Ma khong dung dinh dang. Vui long nhap lai!");
+                continue;
+            }
+            ma_hop_le = true;
+            for (NhaXuatBan nxb : dsnxb) {
+                if (nxb.getMa_nxb().equals(ma)) {
+                    System.out.println("Ma da ton tai. Vui long nhap lai!");
+                    ma_hop_le = false;
+                    break;
+                }
+            }
+        }while(!ma_hop_le);
         System.out.print("Nhap ten nha xuat ban: ");
         String ten = sc.nextLine();
         NhaXuatBan nxb_moi = new NhaXuatBan(ma,ten);
@@ -87,9 +103,10 @@ public class DanhSachNhaXuatBan {
         nxb_moi = new NhaXuatBan(ma,ten);
         return nxb_moi;
     }
+
     public void SuaNhaXuatBan(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nhap ma the loai muon sua: ");
+        System.out.println("Nhap ma nha xuat ban muon sua: ");
         String ma = sc.nextLine();
 
         boolean found = false;
@@ -103,8 +120,8 @@ public class DanhSachNhaXuatBan {
                     System.out.println("Huy sua nha xuat ban.");
                     return;
                 }
-                dsnxb.set(i,nxb_moi); //thay the the loai cu thanh the loai moi
-                GhiFileNhaXuatBan("NhaXuatBan.txt");
+                dsnxb.set(i,nxb_moi); //thay the nxb cu thanh nxb moi
+                GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
                 System.out.println("Da sua nha xuat ban co ma "+ma);
                 found = true;
                 break;
@@ -114,21 +131,25 @@ public class DanhSachNhaXuatBan {
             System.out.println("Khong tim thay nha xuat ban co ma "+ma);
         }
     }
-
-
+    public void ThemNhaXuatBanKhiSuaSachKhacMa(String ma_nxb){
+        Scanner sc = new Scanner(System.in);
+        NhaXuatBan nxb_moi = NhapThongTinNhaXuatBanCoThamSo(ma_nxb);
+        dsnxb.add(nxb_moi);
+        GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
+        System.out.println("Da them nha xuat ban moi co ma: " + nxb_moi.getMa_nxb());
+    }
     public void ThemNhaXuatBan(){
         Scanner sc = new Scanner(System.in);
         NhaXuatBan nxb_moi = NhapThongTinNhaXuatBan();
         dsnxb.add(nxb_moi);
-        GhiFileNhaXuatBan("NhaXuatBan.txt");
+        GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
         System.out.println("Da them nha xuat moi co ma: " + nxb_moi.getMa_nxb());
         System.out.println("Nhap it nhat 1 quyen sach cho nha xuat ban nay: ");
         while(true){
             Sach sach_moi = dss.NhapThongTinSach();
             sach_moi.setMa_nxb(nxb_moi.getMa_nxb());
-            nxb_moi.themSach(sach_moi);
             dss.ThemSachTheoMa(sach_moi);
-            dss.GhiFileSach("Sach.txt");
+            dss.GhiFileSach("src/main/java/com/example/Sach.txt");
             System.out.println("Ban co muon them sach khac cho nha xuat ban nay khong? (c/k): ");
             String chon = sc.nextLine();
             if(!chon.equals("c")){
@@ -136,13 +157,14 @@ public class DanhSachNhaXuatBan {
             }
         }   
     }
-    public void ThemNhaXuatBanKhiSachKhacMa(){
+    public void ThemNhaXuatBanKhiSachKhacMa(String ma_nxb){
         Scanner sc = new Scanner(System.in);
-        NhaXuatBan nxb_moi = NhapThongTinNhaXuatBan();
+        NhaXuatBan nxb_moi = NhapThongTinNhaXuatBanCoThamSo(ma_nxb);
         dsnxb.add(nxb_moi);
-        GhiFileNhaXuatBan("NhaXuatBan.txt");
+        GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
         System.out.println("Da them nha xuat moi co ma: " + nxb_moi.getMa_nxb());
     }
+
     public void XoaNhaXuatBan(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ma nha xuat ban muon xoa: ");
@@ -151,8 +173,8 @@ public class DanhSachNhaXuatBan {
         for(int i = 0;i < dsnxb.size();i++){   //ta dung vong lap chi so vi neu lam for-each ma remove(s) thi khong an toan
             if(dsnxb.get(i).getMa_nxb().equals(ma)){
                 NhaXuatBan nxb = dsnxb.get(i);
-                // bắt buộc xóa tất cả sách của tác giả này
-                for(Sach s : new ArrayList<>(dss.getDSSachCuaTacGia(ma))){
+                // bắt buộc xóa tất cả sách của nha xuat ban này
+                for(Sach s : new ArrayList<>(dss.getDSSachCuaNhaXuatBan(ma))){
                     dss.XoaSachTheoMa(s.getMa_sach());
                 }
                 dsnxb.remove(i);
@@ -164,7 +186,7 @@ public class DanhSachNhaXuatBan {
         if(!found){
             System.out.println("Khong tim thay ma "+ma+ " de xoa");
         }else{
-            GhiFileNhaXuatBan("NhaXuatBan.txt");
+            GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
         }
     }
     public void TimNhaXuatBan(){

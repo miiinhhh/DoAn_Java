@@ -6,8 +6,8 @@ public class SachThamKhao extends Sach{
     public SachThamKhao(){
         
     }
-    public SachThamKhao(String ma_sach,String ten_sach,String ma_the_loai,String ma_tac_gia,String ma_nxb,Ngay ngay_xuat_ban,String linh_vuc,String loai_doc_gia){
-        super(ma_sach,ten_sach,ma_the_loai,ma_tac_gia,ma_nxb,ngay_xuat_ban);
+    public SachThamKhao(String ma_sach,String ten_sach,String ma_the_loai,String ma_tac_gia,String ma_nxb,int so_luong,Ngay ngay_xuat_ban,String linh_vuc,String loai_doc_gia){
+        super(ma_sach,ten_sach,ma_the_loai,ma_tac_gia,ma_nxb,so_luong,ngay_xuat_ban);
         this.linh_vuc=linh_vuc;
         this.loai_doc_gia = loai_doc_gia;
     }
@@ -27,13 +27,12 @@ public class SachThamKhao extends Sach{
     @Override
     public String toFileString() {
         return "ThamKhao, " + getMa_sach() + ", " + getTen_sach() + ", " + getMa_the_loai()
-            + ", " + getMa_tac_gia() + ", " + getMa_nxb() + ", " + getNgay_xuat_ban()
+            + ", " + getMa_tac_gia() + ", " + getMa_nxb() + ", " + getSo_luong() + ", " +  getNgay_xuat_ban()
             + ", " + linh_vuc + "," + loai_doc_gia;
     }
     @Override
     public String toString() { 
-        return String.format(super.toString()+ " %s | %s |",
-             this.linh_vuc, this.loai_doc_gia);
+        return String.format(super.toString()+ " %s | %s |", this.linh_vuc, this.loai_doc_gia);
     }
 }
 

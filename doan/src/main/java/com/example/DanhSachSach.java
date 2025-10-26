@@ -33,35 +33,35 @@ public class DanhSachSach {
                 // Regex: \s*,\s* nghĩa là (0 hoặc nhiều khoảng trắng) + (dấu phẩy) + (0 hoặc nhiều khoảng trắng)
                 String[] parts = line.split("\\s*,\\s*"); // SỬA LẠI DÒNG NÀY
                 
-                if(parts.length >= 7){
-                    
+                if(parts.length >= 8){
+                    int sl = Integer.parseInt(parts[6]);
                     // Hầu hết các trường đã được trim() nhờ regex split ở trên, nhưng ta vẫn dùng trim() để đảm bảo
-                    Ngay day = Ngay.parseNgay(parts[6].trim());
+                    Ngay day = Ngay.parseNgay(parts[7].trim());
                     String loaiSach = parts[0].trim();
                     Sach s = null;
                     
                     switch(loaiSach){
                         case "GiaoKhoa":
-                            // KHI DÙNG line.split("\\s*,\\s*"), MON VÀ LOP ĐÃ LÀ parts[7] và parts[8]
+                            // KHI DÙNG line.split("\\s*,\\s*"), MON VÀ LOP ĐÃ LÀ parts[8] và parts[9]
                             s = new SachGiaoKhoa(
                                 parts[1].trim(), parts[2].trim(), parts[3].trim(), 
-                                parts[4].trim(), parts[5].trim(), day,
-                                parts[7].trim(), parts[8].trim() // SỬA Ở ĐÂY
+                                parts[4].trim(), parts[5].trim(), sl, day,
+                                parts[8].trim(), parts[9].trim() // SỬA Ở ĐÂY
                             );
                             break;
                             
                         case "ThamKhao":
                             s = new SachThamKhao(
                                 parts[1].trim(), parts[2].trim(), parts[3].trim(), 
-                                parts[4].trim(), parts[5].trim(), day, 
-                                parts[7].trim(), parts[8].trim() // SỬA Ở ĐÂY
+                                parts[4].trim(), parts[5].trim(), sl, day, 
+                                parts[8].trim(), parts[9].trim() // SỬA Ở ĐÂY
                             );
                             break;
                             
-                        default: // Sach Thuong (chỉ có 8 fields)
+                        default: // Sach Thuong 
                             s = new Sach(
                                 parts[1].trim(), parts[2].trim(), parts[3].trim(), 
-                                parts[4].trim(), parts[5].trim(), day
+                                parts[4].trim(), parts[5].trim(), sl, day
                             );
                     }
                     
@@ -120,8 +120,32 @@ public class DanhSachSach {
         int c = sc.nextInt();
         sc.nextLine();
         System.out.println("Nhap thong tin sach muon them: ");
-        System.out.print("Nhap ma sach: ");
-        String ma = sc.nextLine();
+        String ma;
+        boolean ma_hop_le  = false;
+        do {
+            System.out.print("Nhap ma sach (GKxxx hoac TKxxx): ");
+            ma = sc.nextLine().trim();
+            if(c == 1){
+                if (!ma.matches("GK\\d+")) {
+                    System.out.println("Ma khong dung dinh dang. Vui long nhap lai!");
+                    continue;
+                }
+            }
+            if(c == 2){
+                if (!ma.matches("TK\\d+")) {
+                    System.out.println("Ma khong dung dinh dang. Vui long nhap lai!");
+                    continue;
+                }
+            }
+            ma_hop_le = true;
+            for (Sach s : dss) {
+                if (s.getMa_sach().equals(ma)) {
+                    System.out.println("Ma da ton tai. Vui long nhap lai!");
+                    ma_hop_le = false;
+                    break;
+                }
+            }
+        }while(!ma_hop_le);
         System.out.print("Nhap ten sach: ");
         String ten = sc.nextLine();
         System.out.print("Nhap ma the loai: ");
@@ -130,6 +154,8 @@ public class DanhSachSach {
         String ma_tg = sc.nextLine();
         System.out.print("Nhap ma nxb: ");
         String ma_nxb = sc.nextLine();
+        System.out.print("Nhap so luong: ");
+        int sl = sc.nextInt();
         System.out.print("Nhap ngay xuat ban (ngay thang nam): ");
         int d,m,y;
         boolean hopLe;
@@ -150,13 +176,13 @@ public class DanhSachSach {
             String mon = sc.nextLine();
             System.out.print("Nhap lop: ");
             String lop = sc.nextLine();
-            sach_moi = new SachGiaoKhoa(ma, ten, ma_tl, ma_tg, ma_nxb, date, mon, lop);
+            sach_moi = new SachGiaoKhoa(ma, ten, ma_tl, ma_tg, ma_nxb, sl, date, mon, lop);
             }else if(c==2){
                 System.out.print("Nhap linh vuc: ");
                 String lv = sc.nextLine();
                 System.out.print("Nhap loai doc gia: ");
                 String ldg = sc.nextLine();
-                sach_moi = new SachThamKhao(ma, ten, ma_tl, ma_tg, ma_nxb, date, lv,ldg);
+                sach_moi = new SachThamKhao(ma, ten, ma_tl, ma_tg, ma_nxb, sl, date, lv,ldg);
             }else{
                 System.out.println("Lua chon khong hop le.");
                 return null;
@@ -186,9 +212,20 @@ public class DanhSachSach {
         String ma_tg = sc.nextLine();
         System.out.print("Nhap ma nxb: ");
         String ma_nxb = sc.nextLine();
-
+        System.out.print("Nhap so luong: ");
+        int sl = sc.nextInt();
         System.out.print("Nhap ngay xuat ban (ngay thang nam): ");
-        int d = sc.nextInt(), m = sc.nextInt(), y = sc.nextInt();
+        int d,m,y;
+        boolean hopLe;
+        do {
+            d = sc.nextInt();
+            m = sc.nextInt();
+            y = sc.nextInt();
+            hopLe = kiemTraHopLe(d, m, y);
+            if (!hopLe) {
+                System.out.println("Ngay thang nam khong hop le, vui long nhap lai!\n");
+            }
+        } while (!hopLe);
         Ngay date = new Ngay(d, m, y);
         sc.nextLine();
 
@@ -198,20 +235,73 @@ public class DanhSachSach {
             String mon = sc.nextLine();
             System.out.print("Nhap lop: ");
             String lop = sc.nextLine();
-            sach_moi = new SachGiaoKhoa(ma, ten, ma_tl, ma_tg, ma_nxb, date, mon, lop);
+            sach_moi = new SachGiaoKhoa(ma, ten, ma_tl, ma_tg, ma_nxb, sl, date, mon, lop);
         } else if(c == 2){
             System.out.print("Nhap linh vuc: ");
             String lv = sc.nextLine();
             System.out.print("Nhap loai doc gia: ");
             String ldg = sc.nextLine();
-            sach_moi = new SachThamKhao(ma, ten, ma_tl, ma_tg, ma_nxb, date, lv, ldg);
+            sach_moi = new SachThamKhao(ma, ten, ma_tl, ma_tg, ma_nxb, sl, date, lv, ldg);
         } else {
             System.out.println("Lua chon khong hop le.");
             return null;
         }
         return sach_moi;
     }
+    Sach NhapThongTinSachCoThamSoDeSua(String ma_sach_cu){ // truyền mã sách cũ khi sửa
+        Scanner sc = new Scanner(System.in);
+        String ma = ma_sach_cu != null ? ma_sach_cu : ""; // giữ mã sách cũ nếu sửa
+        if(ma_sach_cu != null){
+            System.out.println("Ma sach: " + ma); // hiển thị cho người dùng
+        } else {
+            System.out.print("Nhap ma sach: ");
+            ma = sc.nextLine();
+        }
 
+        System.out.print("Nhap ten sach: ");
+        String ten = sc.nextLine();
+        System.out.print("Nhap ma the loai: ");
+        String ma_tl = sc.nextLine();
+        System.out.print("Nhap ma tac gia: ");
+        String ma_tg = sc.nextLine();
+        System.out.print("Nhap ma nxb: ");
+        String ma_nxb = sc.nextLine();
+        System.out.print("Nhap so luong: ");
+        int sl = sc.nextInt();
+        System.out.print("Nhap ngay xuat ban (ngay thang nam): ");
+        int d,m,y;
+        boolean hopLe;
+        do {
+            d = sc.nextInt();
+            m = sc.nextInt();
+            y = sc.nextInt();
+            hopLe = kiemTraHopLe(d, m, y);
+            if (!hopLe) {
+                System.out.println("Ngay thang nam khong hop le, vui long nhap lai!\n");
+            }
+        } while (!hopLe);
+        Ngay date = new Ngay(d, m, y);
+        sc.nextLine();
+
+        Sach sach_moi = null;
+        if(ma_sach_cu.startsWith("GK")){
+            System.out.print("Nhap mon: ");
+            String mon = sc.nextLine();
+            System.out.print("Nhap lop: ");
+            String lop = sc.nextLine();
+            sach_moi = new SachGiaoKhoa(ma, ten, ma_tl, ma_tg, ma_nxb, sl, date, mon, lop);
+        } else if(ma_sach_cu.startsWith("TK")){
+            System.out.print("Nhap linh vuc: ");
+            String lv = sc.nextLine();
+            System.out.print("Nhap loai doc gia: ");
+            String ldg = sc.nextLine();
+            sach_moi = new SachThamKhao(ma, ten, ma_tl, ma_tg, ma_nxb, sl, date, lv, ldg);
+        } else {
+            System.out.println("Lua chon khong hop le.");
+            return null;
+        }
+        return sach_moi;
+    }
     public void SuaSach(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ma sach muon sua: ");
@@ -222,7 +312,7 @@ public class DanhSachSach {
             if(dss.get(i).getMa_sach().equals(ma)){
                 Sach sach_cu = dss.get(i);
                 System.out.println("Nhap thong tin moi cho sach:");
-                Sach sach_moi = NhapThongTinSachCoThamSo(ma);
+                Sach sach_moi = NhapThongTinSachCoThamSoDeSua(ma);
 
                 if(sach_moi == null){
                     System.out.println("Huy sua sach.");
@@ -233,19 +323,28 @@ public class DanhSachSach {
                 String ma_tg_moi = sach_moi.getMa_tac_gia();
 
                 if(!ma_tg_cu.equals(ma_tg_moi)){
-                    TacGia tg_cu = dstg.TimTacGiaTheoMa(ma_tg_cu);
-                    if(tg_cu!=null) tg_cu.xoaSachTheoMa(ma);
-
-                    TacGia tg_moi = dstg.TimTacGiaTheoMa(ma_tg_moi);
-                    if(tg_moi==null){
-                        System.out.println("Tac gia moi chua ton tai. Vui long nhap thong tin tac gia moi:");
-                        dstg.ThemTacGia();
-                        tg_moi = dstg.TimTacGiaTheoMa(ma_tg_moi);
-                    }
-                    tg_moi.themSach(sach_moi);
+                    System.out.println("Tac gia moi chua ton tai. Vui long nhap thong tin tac gia moi:");
+                    dstg.ThemTacGiaKhiSuaSachKhacMa(ma_tg_moi);
                 }
+
+                String ma_tl_cu = sach_cu.getMa_the_loai();
+                String ma_tl_moi = sach_moi.getMa_the_loai();
+
+                if(!ma_tl_cu.equals(ma_tl_moi)){
+                    System.out.println("The loai moi chua ton tai. Vui long nhap thong tin the loai moi:");
+                    dstl.ThemTheLoaiKhiSuaSachKhacMa(ma_tl_moi);
+                }
+
+                String ma_nxb_cu = sach_cu.getMa_nxb();
+                String ma_nxb_moi = sach_moi.getMa_nxb();
+
+                if(!ma_nxb_cu.equals(ma_nxb_moi)){
+                    System.out.println("Nha xuat ban moi chua ton tai. Vui long nhap thong tin nha xuat ban moi:");
+                    dsnxb.ThemNhaXuatBanKhiSuaSachKhacMa(ma_nxb_moi);
+                }
+                
                 dss.set(i,sach_moi); //thay the sach cu thanh sach moi
-                GhiFileSach("Sach.txt");
+                GhiFileSach("src/main/java/com/example/Sach.txt");
                 System.out.println("Da sua sach co ma "+ma);
                 found = true;
                 break;
@@ -268,12 +367,9 @@ public class DanhSachSach {
             if(tg_hien_co==null){
                 //neu tac gia k ton tai->them moi
                 System.out.println("Tac gia chua ton tai. Vui long nhap");
-                dstg.ThemTacGiaKhiSachKhacMa();
+                dstg.ThemTacGiaKhiSachKhacMa(ma_tg);
                 //tim trong dstg, xem co ai co ma do chua
                 tg_hien_co = dstg.TimTacGiaTheoMa(ma_tg);
-            }
-            if(tg_hien_co!=null){
-                tg_hien_co.themSach(sach_moi);
             }
         }
         if(ma_tl!=null){
@@ -282,12 +378,9 @@ public class DanhSachSach {
             if(tl_hien_co==null){
                 //neu the loai k ton tai->them moi
                 System.out.println("The loai chua ton tai. Vui long nhap");
-                dstl.ThemTheLoaiKhiSachCoMa();
+                dstl.ThemTheLoaiKhiSachKhacMa(ma_tl);
                 //tim trong dstl, xem co sach co ma do chua
                 tl_hien_co = dstl.TimTheLoaiTheoMa(ma_tl);
-            }
-            if(tl_hien_co!=null){
-                tl_hien_co.themSach(sach_moi);
             }
         }
 
@@ -297,20 +390,17 @@ public class DanhSachSach {
             if(nxb_hien_co==null){
                 //neu nxb k ton tai->them moi
                 System.out.println("Nha Xuat Ban chua ton tai. Vui long nhap");
-                dsnxb.ThemNhaXuatBanKhiSachKhacMa();
+                dsnxb.ThemNhaXuatBanKhiSachKhacMa(ma_nxb);
                 //tim trong dsnxb, xem co sach co ma do chua
                 nxb_hien_co = dsnxb.TimNhaXuatBanTheoMa(ma_nxb);
             }
-            if(nxb_hien_co!=null){
-                nxb_hien_co.themSach(sach_moi);
-            }
         }
         dss.add(sach_moi);
-        GhiFileSach("Sach.txt");
+        GhiFileSach("src/main/java/com/example/Sach.txt");
     }
     public void ThemSachTheoMa(Sach s) {
         dss.add(s);
-        GhiFileSach("Sach.txt");
+        GhiFileSach("src/main/java/com/example/Sach.txt");
     }
 
     //xoa theo ma nhap tu ban phim
@@ -322,28 +412,16 @@ public class DanhSachSach {
         for(int i = 0;i < dss.size();i++){   //ta dung vong lap chi so vi neu lam for-each ma remove(s) thi khong an toan
             if(dss.get(i).getMa_sach().equals(ma)){  
                 Sach s = dss.get(i); //danh dau sach bi xoa
-                String ma_tg = s.getMa_tac_gia();
                 dss.remove(i);
                 found = true;
                 System.out.println("Da xoa thanh cong sach co ma "+ma);
-                // Kiểm tra tác giả còn sách hay không
-                int soSachConLai = 0;
-                for(Sach x : dss){
-                    if(x.getMa_tac_gia().equals(ma_tg)){
-                        soSachConLai++;
-                    }
-                }
-                if(soSachConLai == 0){
-                    // System.out.println("Tac gia co ma " + ma_tg + " khong con sach nao.");
-                    dstg.XoaTacGiaTheoMa(ma_tg);
-                }
                 break;
             }
         }
         if(!found){
             System.out.println("Khong tim thay ma "+ma);
         }else{
-            GhiFileSach("Sach.txt");
+            GhiFileSach("src/main/java/com/example/Sach.txt");
         }
     }
     //xoa theo ma sach tu dong
@@ -357,11 +435,11 @@ public class DanhSachSach {
             }
         }
         if(found){
-            GhiFileSach("Sach.txt");
+            GhiFileSach("src/main/java/com/example/Sach.txt");
         }
     }
 
-    //lay tat ca sach cua 1 tac gia
+    //tao ra 1 danh sach chi rieng cua tac gia do thoi - tao cai nay vi can xoa tg,tl,nxb
     public ArrayList<Sach> getDSSachCuaTacGia(String ma_tg){
         ArrayList<Sach> result = new ArrayList<>();
         for(Sach s : dss){
@@ -372,6 +450,25 @@ public class DanhSachSach {
         return result;
     }
 
+    public ArrayList<Sach> getDSSachCuaTheLoai(String ma_tl){
+        ArrayList<Sach> result = new ArrayList<>();
+        for(Sach s : dss){
+            if(s.getMa_the_loai().equals(ma_tl)){
+                result.add(s);
+            }
+        }
+        return result;
+    }
+
+    public ArrayList<Sach> getDSSachCuaNhaXuatBan(String ma_nxb){
+        ArrayList<Sach> result = new ArrayList<>();
+        for(Sach s : dss){
+            if(s.getMa_nxb().equals(ma_nxb)){
+                result.add(s);
+            }
+        }
+        return result;
+    }
     public void TimSach(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ma sach muon tim: ");
@@ -389,15 +486,5 @@ public class DanhSachSach {
             System.out.println("Khong tim thay sach co ma "+ma);
         }
     }
-    public int timkiemma(String ma) {
-    if (ma == null) return -1;
-    ma = ma.trim();
-    for (int i = 0; i < dss.size(); i++) {
-        if (dss.get(i).getMa_sach().equals(ma)) {
-            return i;
-        }
-    }
-    return -1;
-}
 }
 

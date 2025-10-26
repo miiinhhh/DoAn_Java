@@ -7,24 +7,34 @@ public class QuanLyThuVien{
     private DanhSachTheLoai dstl=new DanhSachTheLoai();
     private DanhSachPhieuMuon dsphieumuon=new DanhSachPhieuMuon();
     private DanhSachChiTietPhieuMuon dschitietphieumuon=new DanhSachChiTietPhieuMuon();
-    private DanhSachDocGia dsdg=new DanhSachDocGia();
-    private DanhSachNhanVien dsnv=new DanhSachNhanVien();
+    private DanhSachDocGia dsDG =new DanhSachDocGia();
+    private DanhSachNhanVien dsNV =new DanhSachNhanVien();
     private DanhSachPhieuPhat dsphieuphat=new DanhSachPhieuPhat();
     private DanhSachQuyDinhPhat dsquydinhphat=new DanhSachQuyDinhPhat();
     private DanhSachNhaXuatBan dsnxb=new DanhSachNhaXuatBan();
-    Scanner sc=new Scanner(System.in);
+    private static QuanLyNhaCungCap qlNCC = new QuanLyNhaCungCap();
+    private static QuanLyPhieuNhap qlPN = new QuanLyPhieuNhap(qlNCC);
+
+    private static String FILE_NCC = "src//main/java/com/example/nhacungcap.txt";
+    private static String FILE_PN = "src//main/java/com/example/phieunhap.txt";
+    private static String FILE_CT = "src//main/java/com/example/chitietphieunhap.txt";
+
+    private static Scanner sc=new Scanner(System.in);
+
     public QuanLyThuVien() {}
-    public QuanLyThuVien(DanhSachSach dss, DanhSachTacGia dstg, DanhSachTheLoai dstl, DanhSachPhieuMuon dsphieumuon, DanhSachChiTietPhieuMuon dschitietphieumuon, DanhSachDocGia dsdg, DanhSachNhanVien dsnv, DanhSachPhieuPhat dsphieuphat, DanhSachQuyDinhPhat dsquydinhphat, DanhSachNhaXuatBan dsnxb) {
+    public QuanLyThuVien(DanhSachSach dss, DanhSachTacGia dstg, DanhSachTheLoai dstl, DanhSachPhieuMuon dsphieumuon, DanhSachChiTietPhieuMuon dschitietphieumuon, DanhSachDocGia dsdg, DanhSachNhanVien dsnv, DanhSachPhieuPhat dsphieuphat, DanhSachQuyDinhPhat dsquydinhphat, DanhSachNhaXuatBan dsnxb, QuanLyNhaCungCap qlNCC, QuanLyPhieuNhap qlPN) {
         this.dss = dss;
         this.dstg = dstg;
         this.dstl = dstl;
         this.dsphieumuon = dsphieumuon;
         this.dschitietphieumuon = dschitietphieumuon;
-        this.dsdg = dsdg;
-        this.dsnv = dsnv;
+        this.dsDG = dsdg;
+        this.dsNV = dsnv;
         this.dsphieuphat = dsphieuphat;
         this.dsquydinhphat = dsquydinhphat;
         this.dsnxb = dsnxb;
+        this.qlNCC = qlNCC;
+        this.qlPN = qlPN;
     }
     public QuanLyThuVien(QuanLyThuVien qltv) {
         this.dss = qltv.dss;
@@ -32,45 +42,56 @@ public class QuanLyThuVien{
         this.dstl = qltv.dstl;
         this.dsphieumuon = qltv.dsphieumuon;
         this.dschitietphieumuon = qltv.dschitietphieumuon;
-        this.dsdg = qltv.dsdg;
-        this.dsnv = qltv.dsnv;
+        this.dsDG = qltv.dsDG;
+        this.dsNV = qltv.dsNV;
         this.dsphieuphat = qltv.dsphieuphat;
         this.dsquydinhphat = qltv.dsquydinhphat;
         this.dsnxb = qltv.dsnxb;
+        this.qlNCC = qltv.qlNCC;
+        this.qlPN = qltv.qlPN;
     }
     public DanhSachSach getDss() {return dss;}
     public DanhSachTacGia getDstg() {return dstg;}
     public DanhSachTheLoai getDstl() {return dstl;}
     public DanhSachPhieuMuon getDsphieumuon() {return dsphieumuon;}
     public DanhSachChiTietPhieuMuon getDschitietphieumuon() {return dschitietphieumuon;}
-    public DanhSachDocGia getDsdg() {return dsdg;}
-    public DanhSachNhanVien getDsnv() {return dsnv;}
+    public DanhSachDocGia getDsdg() {return dsDG;}
+    public DanhSachNhanVien getDsnv() {return dsNV;}
     public DanhSachPhieuPhat getDsphieuphat() {return dsphieuphat;}
     public DanhSachQuyDinhPhat getDsquydinhphat() {return dsquydinhphat;}
     public DanhSachNhaXuatBan getDsnxb() {return dsnxb;}
+    public QuanLyNhaCungCap getQlNCC() { return qlNCC; }
+    public QuanLyPhieuNhap getQlPN() { return qlPN; }
 
     public void setDss(DanhSachSach dss) {this.dss = dss;}
     public void setDstg(DanhSachTacGia dstg) {this.dstg = dstg;}
     public void setDstl(DanhSachTheLoai dstl) {this.dstl = dstl;}
     public void setDsphieumuon(DanhSachPhieuMuon dsphieumuon) {this.dsphieumuon = dsphieumuon;}
     public void setDschitietphieumuon(DanhSachChiTietPhieuMuon dschitietphieumuon) {this.dschitietphieumuon = dschitietphieumuon;}
-    public void setDsdg(DanhSachDocGia dsdg) {this.dsdg = dsdg;}
-    public void setDsnv(DanhSachNhanVien dsnv) {this.dsnv = dsnv;}
+    public void setDsdg(DanhSachDocGia dsdg) {this.dsDG = dsdg;}
+    public void setDsnv(DanhSachNhanVien dsnv) {this.dsNV = dsnv;}
     public void setDsphieuphat(DanhSachPhieuPhat dsphieuphat) {this.dsphieuphat = dsphieuphat;}
     public void setDsquydinhphat(DanhSachQuyDinhPhat dsquydinhphat) {this.dsquydinhphat = dsquydinhphat;}
     public void setDsnxb(DanhSachNhaXuatBan dsnxb) {this.dsnxb = dsnxb;}
- 
+    public void setQlNCC(QuanLyNhaCungCap qlNCC) { this.qlNCC = qlNCC; }
+    public void setQlPN(QuanLyPhieuNhap qlPN) { this.qlPN = qlPN; }
+
     public void docTatCaFile(){
         dsphieumuon.docFile();
         dschitietphieumuon.docFile();
-        dsdg.docfile();
-        dsnv.docFile();
+        dsDG.docfile();
+        dsNV.docfile();
         dsphieuphat.docFile(dsquydinhphat);
         dsquydinhphat.docFile();
         dstg.DocFileTacGia("src/main/java/com/example/TacGia.txt");
         dss.DocFileSach("src/main/java/com/example/Sach.txt");
         dstl.DocFileTheLoai("src/main/java/com/example/TheLoai.txt");
         dsnxb.DocFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
+        int soLuongDoc =IOFile.docNhaCungCap(qlNCC.getArray(), FILE_NCC);
+        qlNCC.setSoLuong(soLuongDoc);
+        int soPhieu = IOFile.docPhieuNhap(qlPN.getArray(), 500, qlNCC, FILE_PN, FILE_CT);
+        qlPN.setSoLuong(soPhieu);
+
     }
     public void menu(){
         int choice;
@@ -87,9 +108,8 @@ public class QuanLyThuVien{
             System.out.println("9.Quan ly phieu phat");
             System.out.println("10.Quan ly quy dinh phat");
             System.out.println("11.Quan ly phieu nhap sach");
-            System.out.println("12.Quan ly chi tiet phieu nhap sach");
-            System.out.println("13.Quan ly nha cung cap");
-            System.out.println("14.Thoat");
+            System.out.println("12.Quan ly nha cung cap");
+            System.out.println("13.Thoat");
             System.out.print("Lua chon cua ban: ");
             try {
                 input = sc.nextLine().trim();
@@ -105,10 +125,10 @@ public class QuanLyThuVien{
                     menuTacGia(dstg);
                     break;
                 case 3:
-                    menuNhanVien();
+                    menuNhanVien(dsNV, sc);
                     break;
                 case 4:
-                    menuDocGia();
+                    menuDocGia(dsDG, sc);
                     break;
                 case 5:
                     menuTheLoai(dstl);
@@ -129,15 +149,12 @@ public class QuanLyThuVien{
                     menuQuyDinhPhat();
                     break;
                 case 11:
-                    menuPhieuNhapSach();
+                    menuPN();
                     break;
                 case 12:
-                    menuChiTietPhieuNhapSach();
+                    menuNCC();
                     break;
                 case 13:
-                    menuNhaCungCap();
-                    break;
-                case 14:
                     System.out.println("Cam on ban da su dung chuong trinh!");
                     break;
                 default:
@@ -512,6 +529,292 @@ public void menuPhieuPhat(){
                 default: System.out.println("Lua chon khong hop le!");
             }
         } while(c != 0);
+    }
+    private static void menuNCC() {
+        int chon;
+        do {
+            System.out.println("\n===== QUAN LY NHA CUNG CAP =====");
+            System.out.println("1. Them nha cung cap");
+            System.out.println("2. Xem danh sach");
+            System.out.println("3. Tim theo ma");
+            System.out.println("4. Sua nha cung cap");
+            System.out.println("5. Xoa nha cung cap");
+            System.out.println("6. Ghi file");
+            System.out.println("7. Doc file");
+            System.out.println("0. Quay lai");
+            System.out.print("Chon: ");
+            chon = Integer.parseInt(sc.nextLine());
+
+            switch (chon) {
+                case 1:
+                    System.out.print("Nhap ma NCC: ");
+                    String maNCC = sc.nextLine();
+                    System.out.print("Nhap ten NCC: ");
+                    String tenNCC = sc.nextLine();
+                    System.out.print("Nhap dia chi: ");
+                    String diaChi = sc.nextLine();
+                    System.out.print("Nhap so dien thoai: ");
+                    String sdt = sc.nextLine();
+
+                    NhaCungCap ncc = new NhaCungCap(maNCC, tenNCC, diaChi, sdt);
+                    if (qlNCC.them(ncc))
+                        System.out.println("Da them nha cung cap!");
+                    else
+                        System.out.println("Danh sach day!");
+                    break;
+                case 2:
+                    qlNCC.hienThi();
+                    break;
+                case 3:
+                    System.out.print("Nhap ma NCC: ");
+                    String ma = sc.nextLine();
+                    int idx = qlNCC.timTheoMa(ma);
+                    if (idx != -1)
+                        System.out.println(qlNCC.getArray()[idx]);
+                    else
+                        System.out.println("Khong tim thay!");
+                    break;
+                case 4:
+                    System.out.print("Nhap ma NCC can sua: ");
+                    String maSua = sc.nextLine();
+                    System.out.print("Nhap ten moi: ");
+                    String tenMoi = sc.nextLine();
+                    System.out.print("Nhap dia chi moi: ");
+                    String diaChiMoi = sc.nextLine();
+                    System.out.print("Nhap so dien thoai moi: ");
+                    String sdtMoi = sc.nextLine();
+
+                    if (qlNCC.sua(maSua, tenMoi, diaChiMoi, sdtMoi))
+                        System.out.println("Da cap nhat nha cung cap!");
+                    else
+                        System.out.println("Khong tim thay ma NCC!");
+                    break;
+                case 5:
+                    System.out.print("Nhap ma NCC can xoa: ");
+                    if (qlNCC.xoa(sc.nextLine()))
+                        System.out.println("Da xoa!");
+                    else
+                        System.out.println("Khong tim thay!");
+                    break;
+                case 6:
+                    IOFile.ghiNhaCungCap(qlNCC.getArray(), qlNCC.getSoLuong(), FILE_NCC);
+                    break;
+                case 7:
+                    int soLuongDoc =IOFile.docNhaCungCap(qlNCC.getArray(), FILE_NCC);
+                    qlNCC.setSoLuong(soLuongDoc);
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Lua chon khong hop le!");
+            }
+        } while (chon != 0);
+    }
+    // ===================== MENU PHIEU NHAP =====================
+    private static void menuPN() {
+        int chon;
+        do {
+            System.out.println("\n===== QUAN LY PHIEU NHAP =====");
+            System.out.println("1. Them phieu nhap");
+            System.out.println("2. Xem danh sach");
+            System.out.println("3. Tim theo ma phieu");
+            System.out.println("4. Sua phieu nhap");
+            System.out.println("5. Xoa phieu nhap");
+            System.out.println("6. Ghi file");
+            System.out.println("7. Doc file");
+            System.out.println("0. Quay lai");
+            System.out.print("Chon: ");
+            chon = Integer.parseInt(sc.nextLine());
+
+            switch (chon) {
+                case 1:
+                    themPhieuNhap();
+                    break;
+                case 2:
+                    qlPN.hienThi();
+                    break;
+                case 3:
+                    System.out.print("Nhap ma phieu: ");
+                    PhieuNhap pn = qlPN.layTheoMa(sc.nextLine());
+                    if (pn != null) {
+                        System.out.println(pn);
+                        pn.hienThiChiTiet();
+                    } else {
+                        System.out.println("Khong tim thay!");
+                    }
+                    break;
+                case 4:
+                    System.out.print("Nhap ma phieu can sua: ");
+                    suaPhieuNhap(sc.nextLine());
+                    break;
+                case 5:
+                    System.out.print("Nhap ma phieu can xoa: ");
+                    if (qlPN.xoa(sc.nextLine()))
+                        System.out.println("Da xoa!");
+                    else
+                        System.out.println("Khong tim thay!");
+                    break;
+                case 6:
+                    IOFile.ghiPhieuNhap(qlPN.getArray(), qlPN.getSoLuong(), FILE_PN, FILE_CT);
+                    System.out.println("Da ghi file phieu nhap!");
+                    break;
+                case 7:
+                    int soPhieu = IOFile.docPhieuNhap(qlPN.getArray(), 500, qlNCC, FILE_PN, FILE_CT);
+                    System.out.println("Da doc file phieu nhap!");
+                    qlPN.setSoLuong(soPhieu);
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Lua chon khong hop le!");
+            }
+        } while (chon != 0);
+    }
+
+    // ===================== THEM PHIEU NHAP =====================
+    private static void themPhieuNhap() {
+        System.out.print("Nhap ma phieu: ");
+        String ma = sc.nextLine();
+        System.out.print("Nhap ngay (yyyy-MM-dd): ");
+        String ngay = sc.nextLine();
+        System.out.print("Nhap ma nha cung cap: ");
+        String maNCC = sc.nextLine();
+        NhaCungCap ncc = qlNCC.layTheoMa(maNCC);
+        if (ncc == null) {
+            System.out.println("Ma NCC khong ton tai!");
+            return;
+        }
+        PhieuNhap pn = new PhieuNhap(ma, ngay, ncc);
+
+        System.out.print("Ban co muon nhap chi tiet khong? (y/n): ");
+        String ch = sc.nextLine();
+        if (ch.equalsIgnoreCase("y")) {
+            while (true) {
+                System.out.print("Nhap ma hang: ");
+                String maHang = sc.nextLine();
+                System.out.print("Nhap ten hang: ");
+                String ten = sc.nextLine();
+                System.out.print("Nhap so luong: ");
+                int sl = Integer.parseInt(sc.nextLine());
+                System.out.print("Nhap don gia: ");
+                double dg = Double.parseDouble(sc.nextLine());
+                pn.themChiTiet(new ChiTietPhieuNhap(ma, maHang, sl, dg));
+
+                System.out.print("Nhap tiep? (y/n): ");
+                if (!sc.nextLine().equalsIgnoreCase("y")) break;
+            }
+        }
+
+        if (qlPN.them(pn))
+            System.out.println("Them thanh cong!");
+        else
+            System.out.println("Danh sach day!");
+    }
+
+    // ===================== SUA PHIEU NHAP =====================
+    private static void suaPhieuNhap(String ma) {
+        PhieuNhap pn = qlPN.layTheoMa(ma);
+        if (pn == null) {
+            System.out.println("Khong tim thay!");
+            return;
+        }
+        System.out.print("Nhap ngay moi (bo trong neu giu nguyen): ");
+        String ngay = sc.nextLine();
+        if (!ngay.isEmpty()) pn.setNgayNhap(ngay);
+
+        System.out.print("Nhap ma NCC moi (bo trong neu giu nguyen): ");
+        String maNCC = sc.nextLine();
+        if (!maNCC.isEmpty()) {
+            NhaCungCap ncc = qlNCC.layTheoMa(maNCC);
+            if (ncc != null) pn.setNhaCungCap(ncc);
+            else System.out.println("Ma NCC khong ton tai!");
+        }
+
+        System.out.println("Ban co muon sua chi tiet khong? (y/n): ");
+        if (sc.nextLine().equalsIgnoreCase("y")) {
+            pn.hienThiChiTiet();
+            System.out.println("Nhap lai toan bo chi tiet:");
+            pn = new PhieuNhap(pn.getMaPhieu(), pn.getNgayNhap(), pn.getNhaCungCap());
+            while (true) {
+                System.out.print("Nhap ma hang: ");
+                String maHang = sc.nextLine();
+                System.out.print("Nhap ten hang: ");
+                String ten = sc.nextLine();
+                System.out.print("Nhap so luong: ");
+                int sl = Integer.parseInt(sc.nextLine());
+                System.out.print("Nhap don gia: ");
+                double dg = Double.parseDouble(sc.nextLine());
+                pn.themChiTiet(new ChiTietPhieuNhap(ma, maHang, sl, dg));
+
+                System.out.print("Nhap tiep? (y/n): ");
+                if (!sc.nextLine().equalsIgnoreCase("y")) break;
+            }
+        }
+        System.out.println("Da cap nhat phieu nhap!");
+    }
+    // ===================== MENU DOC GIA =====================
+    public static void menuDocGia(DanhSachDocGia dsDG, Scanner sc) {
+        int chon;
+        do {
+            System.out.println("\n------ MENU QUAN LY DOC GIA ------");
+            System.out.println("1. Nhap danh sach doc gia");
+            System.out.println("2. Xuat danh sach doc gia");
+            System.out.println("3. Them doc gia");
+            System.out.println("4. Sua doc gia");
+            System.out.println("5. Tim doc gia theo ma");
+            System.out.println("6. Xoa doc gia theo ma");
+            System.out.println("7. Ghi danh sach vao file");
+            System.out.println("8. Doc danh sach tu file");
+            System.out.println("0. Quay lai menu chinh");
+            System.out.print("Chon chuc nang: ");
+            chon = sc.nextInt();
+            sc.nextLine();
+
+            switch (chon) {
+                case 1: dsDG.nhap(); break;
+                case 2: dsDG.indanhsach(); break;
+                case 3: dsDG.them(); break;
+                case 4: dsDG.sua(); break;
+                case 5: dsDG.tim(); break;
+                case 6: dsDG.xoa(); break;
+                case 7: dsDG.ghifile(); break;
+                case 8: dsDG.docfile(); break;
+                case 0: System.out.println("Quay lai menu chinh..."); break;
+                default: System.out.println("Lua chon khong hop le!");
+            }
+        } while (chon != 0);
+    }
+    // ===================== MENU NHAN VIEN =====================
+    public static void menuNhanVien(DanhSachNhanVien dsNV, Scanner sc) {
+        int chon;
+        do {
+            System.out.println("\n------ MENU QUAN LY NHAN VIEN ------");
+            System.out.println("1. Nhap danh sach nhan vien");
+            System.out.println("2. Xuat danh sach nhan vien");
+            System.out.println("3. Them nhan vien");
+            System.out.println("4. Sua nhan vien");
+            System.out.println("5. Tim nhan vien theo ma");
+            System.out.println("6. Xoa nhan vien theo ma");
+            System.out.println("7. Ghi danh sach vao file");
+            System.out.println("8. Doc danh sach tu file");
+            System.out.println("0. Quay lai menu chinh");
+            System.out.print("Chon chuc nang: ");
+            chon = sc.nextInt();
+            sc.nextLine();
+
+            switch (chon) {
+                case 1: dsNV.nhap(); break;
+                case 2: dsNV.indanhsach(); break;
+                case 3: dsNV.them(); break;
+                case 4: dsNV.sua(); break;
+                case 5: dsNV.tim(); break;
+                case 6: dsNV.xoa(); break;
+                case 7: dsNV.ghifile(); break;
+                case 8: dsNV.docfile(); break;
+                case 0: System.out.println("Quay lai menu chinh..."); break;
+                default: System.out.println("Lua chon khong hop le!");
+            }
+        } while (chon != 0);
     }
     public static void main(String[] args) {
     QuanLyThuVien ql = new QuanLyThuVien();

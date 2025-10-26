@@ -160,7 +160,7 @@ public class QuanLyThuVien{
                 default:
                     System.out.println("Nhap sai ! Vui long nhap lai !");
             }
-            }while(choice != 14);
+            }while(choice != 13);
         }
         public void menuPhieuMuon(){
             int choice = -1;

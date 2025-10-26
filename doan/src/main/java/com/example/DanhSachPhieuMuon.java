@@ -66,10 +66,15 @@
             System.out.println("Them thanh cong");
         }
         public void them(){
-            ds = Arrays.copyOf(ds,ds.length + 1);
-            ds[ds.length - 1] = new PhieuMuon();
+            PhieuMuon newPhieu = new PhieuMuon();
             System.out.println("Nhap thong tin phieu muon can them: ");
-            ds[ds.length - 1].nhap();
+            newPhieu.nhap();
+            if(timkiemma(newPhieu.getMaPhieuMuon()) != -1 ){ 
+                System.out.println("Ma phieu muon da ton tai !! Khong them duoc.");
+                return;
+            }
+            ds = Arrays.copyOf(ds, ds.length + 1);
+            ds[ds.length - 1] = newPhieu;
             System.out.println("Them thanh cong");
         }
         public int timkiemma (String ma){

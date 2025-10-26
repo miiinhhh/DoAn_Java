@@ -95,21 +95,29 @@ public class QuanLyThuVien{
     public void menu(){
         int choice;
         String input;
-        do{
-            System.out.println("1.Quan ly sach");
-            System.out.println("2.Quan ly tac gia");
-            System.out.println("3.Quan ly nhan vien");
-            System.out.println("4.Quan ly doc gia");
-            System.out.println("5.Quan ly the loai");
-            System.out.println("6.Quan ly nha xuat ban");
-            System.out.println("7.Quan ly phieu muon");
-            System.out.println("8.Quan ly chi tiet phieu muon");
-            System.out.println("9.Quan ly phieu phat");
-            System.out.println("10.Quan ly quy dinh phat");
-            System.out.println("11.Quan ly phieu nhap sach");
-            System.out.println("12.Quan ly nha cung cap");
-            System.out.println("13.Thoat");
-            System.out.print("Lua chon cua ban: ");
+        do{ 
+            System.out.println("\n+=================================================+");
+            System.out.println("|           HE THONG QUAN LY THU VIEN             |");
+            System.out.println("+=================================================+");
+            System.out.println("| [1] Quan ly SACH                                |");
+            System.out.println("| [2] Quan ly TAC GIA                             |");
+            System.out.println("| [3] Quan ly THE LOAI                            |");
+            System.out.println("| [4] Quan ly NHA XUAT BAN                        |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [5] Quan ly DOC GIA                             |");
+            System.out.println("| [6] Quan ly NHAN VIEN                           |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [7] Quan ly PHIEU MUON                          |");
+            System.out.println("| [8] Quan ly CHI TIET PHIEU MUON                 |");
+            System.out.println("| [9] Quan ly PHIEU PHAT                          |");
+            System.out.println("| [10] Quan ly QUY DINH PHAT                      |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [11] Quan ly PHIEU NHAP SACH                    |");
+            System.out.println("| [12] Quan ly NHA CUNG CAP                       |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [13] THOAT CHUONG TRINH                         |");
+            System.out.println("+=================================================+");
+            System.out.print(">>> Nhap lua chon cua ban (1-14): ");
             try {
                 input = sc.nextLine().trim();
                 choice = Integer.parseInt(input);
@@ -121,20 +129,20 @@ public class QuanLyThuVien{
                    menuSach(dss);
                    break;
                 case 2:
-                    menuTacGia(dstg);
-                    break;
+                   menuTacGia(dstg);
+                   break;
                 case 3:
-                    menuNhanVien(dsNV, sc);
-                    break;
+                   menuTheLoai(dstl);
+                   break;
                 case 4:
-                    menuDocGia(dsDG, sc);
-                    break;
+                   menuNhaXuatBan(dsnxb);
+                   break;
                 case 5:
-                    menuTheLoai(dstl);
-                    break;
+                   menuDocGia(dsDG, sc);
+                   break;
                 case 6:
-                    menuNhaXuatBan(dsnxb);
-                    break;
+                   menuNhanVien(dsNV, sc);
+                   break;
                 case 7:
                     menuPhieuMuon();
                     break;
@@ -154,91 +162,32 @@ public class QuanLyThuVien{
                     menuNCC();
                     break;
                 case 13:
-                    System.out.println("Cam on ban da su dung chuong trinh!");
+                    System.out.println("Cam on ban da su dung chuong trinh. Hen gap lai ");
                     break;
                 default:
-                    System.out.println("Nhap sai ! Vui long nhap lai !");
+                    System.out.println("!!!Lua chon KHONG HOP LE. Vui long nhap lai (1-13)!");
             }
             }while(choice != 13);
         }
         public void menuPhieuMuon(){
-            int choice = -1;
-            String input; 
-            do {
-                System.out.println("\n--- QUAN LY PHIEU MUON ---");
-                System.out.println("1. Nhap thong tin phieu muon moi (nhap nhieu)");
-                System.out.println("2. Them phieu muon (nhap 1)");
-                System.out.println("3. Hien thi tat ca phieu muon");
-                System.out.println("4. Sua thong tin phieu muon");
-                System.out.println("5. Xoa phieu muon");
-                System.out.println("6. Tim kiem phieu muon (theo Ma phieu muon/Ma doc gia)");
-                System.out.println("7. Ghi du lieu ra file Phieumuon.txt");
-                System.out.println("8. Doc du lieu tu file Phieumuon.txt");
-                System.out.println("0. Quay lai menu chinh");
-                System.out.print("Lua chon cua ban: ");
-                try {
-                    input = sc.nextLine().trim();
-                    choice = Integer.parseInt(input);
-                } catch (NumberFormatException e) {
-                    choice = -1; 
-                }
-                switch (choice) {
-                    case 1:
-                       dsphieumuon.nhap(); 
-                       break;
-                    case 2:
-                       dsphieumuon.them();
-                       break;
-                    case 3:
-                       dsphieumuon.hienThiTatCa();
-                       break;
-                    case 4:
-                       dsphieumuon.sua();
-                       break;
-                    case 5:
-                       dsphieumuon.xoa();
-                       break;
-                    case 6:
-                       System.out.print("Nhap Ma phieu muon hoac Ma doc gia de tim kiem: ");
-                       String keyword = sc.nextLine().trim();
-                       dsphieumuon.timKiem(keyword);
-                       break;
-                    case 7:
-                       dsphieumuon.ghiFile();
-                       System.out.println("Da ghi du lieu vao file Phieumuon.txt.");
-                       break;
-                    case 8:
-                       dsphieumuon.docFile();
-                       System.out.println("Da doc du lieu tu file Phieumuon.txt.");
-                       break;
-                    case 0:
-                       System.out.println("Quay lai menu chinh...");
-                       break;
-                    default:
-                       System.out.println("Lua chon khong hop le. Vui long chon lai tu 0 den 8 !!");
-                       break;
-                }
-            } while (choice != 0);
-        }
-public void menuChiTietPhieuMuon(){
     int choice = -1;
     String input; 
-    DanhSachChiTietPhieuMuon dsctpm = this.dschitietphieumuon;
-    DanhSachSach dss = this.dss;               
-    
     do {
-        System.out.println("\n--- QUAN LY CHI TIET PHIEU MUON ---");
-        System.out.println("1. Nhap thong tin chi tiet phieu muon (nhap nhieu)");
-        System.out.println("2. Them chi tiet phieu muon (nhap 1)");
-        System.out.println("3. Hien thi tat ca chi tiet phieu muon");
-        System.out.println("4. Sua thong tin chi tiet phieu muon");
-        System.out.println("5. Xoa chi tiet phieu muon");
-        System.out.println("6. Tim kiem chi tiet phieu muon (theo Ma PM/Ma Sach)");
-        System.out.println("7. Ghi du lieu ra file Chitietphieumuon.txt");
-        System.out.println("8. Doc du lieu tu file Chitietphieumuon.txt");
-        System.out.println("0. Quay lai menu chinh");
-        System.out.print("Vui long nhap lua chon: ");
-
+        System.out.println("\n+-------------------------------------------------+");
+        System.out.println("|           QUAN LY PHIEU MUON                    |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.println("| [1] Them phieu muon moi                         |");
+        System.out.println("| [2] Hien thi tat ca phieu muon                  |");
+        System.out.println("| [3] Sua thong tin phieu muon                    |");
+        System.out.println("| [4] Xoa phieu muon                              |");
+        System.out.println("| [5] Tim kiem phieu muon (Ma PM/Ma DG)           |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.println("| [6] Ghi du lieu ra file Phieumuon.txt           |");
+        System.out.println("| [7] Doc du lieu tu file Phieumuon.txt           |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.println("| [0] Quay lai menu chinh                         |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.print(">>> Nhap lua chon cua ban (0-7): ");
         try {
             input = sc.nextLine().trim();
             choice = Integer.parseInt(input);
@@ -247,36 +196,94 @@ public void menuChiTietPhieuMuon(){
         }
         switch (choice) {
             case 1:
-                dsctpm.nhap(dsphieumuon,dss);
+                dsphieumuon.them();
                 break;
             case 2:
-                dsctpm.them(dsphieumuon,dss);
+                dsphieumuon.hienThiTatCa();
                 break;
             case 3:
-                dsctpm.hienThiTatCa();
+                dsphieumuon.sua();
                 break;
             case 4:
-                dsctpm.sua(dss); 
+                dsphieumuon.xoa();
                 break;
             case 5:
-                dsctpm.xoa(); 
+                System.out.print("Nhap Ma phieu muon hoac Ma doc gia de tim kiem: ");
+                String keyword = sc.nextLine().trim();
+                dsphieumuon.timKiem(keyword);
                 break;
             case 6:
+                dsphieumuon.ghiFile();
+                break;
+            case 7:
+                dsphieumuon.docFile();
+                break;
+            case 0:
+                System.out.println("Quay lai menu chinh...");
+                break;
+            default:
+                System.out.println("!!! Lua chon KHONG HOP LE. Vui long chon lai tu 0 den 7 !!!");
+                break;
+        }
+    } while (choice != 0);
+}
+public void menuChiTietPhieuMuon(){
+    int choice = -1;
+    String input; 
+    DanhSachChiTietPhieuMuon dsctpm = this.dschitietphieumuon;
+    DanhSachSach dss = this.dss;               
+    
+    do {
+        System.out.println("\n+-------------------------------------------------+");
+        System.out.println("|       QUAN LY CHI TIET PHIEU MUON               |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.println("| [1] Them chi tiet phieu muon                    |");
+        System.out.println("| [2] Hien thi tat ca chi tiet phieu muon         |");
+        System.out.println("| [3] Sua thong tin chi tiet phieu muon           |");
+        System.out.println("| [4] Xoa chi tiet phieu muon                     |");
+        System.out.println("| [5] Tim kiem chi tiet (theo Ma PM/Ma Sach)      |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.println("| [6] Ghi du lieu ra file                         |");
+        System.out.println("| [7] Doc du lieu tu file                         |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.println("| [0] Quay lai menu chinh                         |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.print(">>> Vui long nhap lua chon (0-7): ");
+        try {
+            input = sc.nextLine().trim();
+            choice = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            choice = -1; 
+        }
+        switch (choice) {
+            case 1:
+                dsctpm.them(dsphieumuon,dss);
+                break;
+            case 2:
+                dsctpm.hienThiTatCa();
+                break;
+            case 3:
+                dsctpm.sua(dss); 
+                break;
+            case 4:
+                dsctpm.xoa(); 
+                break;
+            case 5:
                 System.out.print("Nhap Ma phieu muon hoac Ma sach de tim kiem: ");
                 String keyword = sc.nextLine().trim();
                 dsctpm.timKiem(keyword);
                 break;
-            case 7:
+            case 6:
                 dsctpm.ghiFile();
                 break;
-            case 8:
+            case 7:
                 dsctpm.docFile();
                 break;
             case 0:
                 System.out.println("Quay lai menu chinh...");
                 break;
             default:
-                System.out.println("Lua chon khong hop le. Vui long chon lai!");
+                System.out.println("!!! Lua chon KHONG HOP LE. Vui long chon lai tu 0 den 7 !!!");
                 break;
             }
         } while (choice != 0);
@@ -289,17 +296,21 @@ public void menuPhieuPhat(){
     DanhSachQuyDinhPhat dsqdp = this.dsquydinhphat;
     
     do {
-        System.out.println("\n--- QUAN LY PHIEU PHAT ---");
-        System.out.println("1. Nhap thong tin phieu phat moi (nhap nhieu)");
-        System.out.println("2. Them phieu phat (nhap 1)");
-        System.out.println("3. Hien thi tat ca phieu phat");
-        System.out.println("4. Sua thong tin phieu phat");
-        System.out.println("5. Xoa phieu phat");
-        System.out.println("6. Tim kiem phieu phat (theo Ma Phieu Phat/Ma Doc Gia)");
-        System.out.println("7. Ghi du lieu ra file Phieuphat.txt");
-        System.out.println("8. Doc du lieu tu file Phieuphat.txt");
-        System.out.println("0. Quay lai menu chinh");
-        System.out.print("Vui long nhap lua chon: ");
+        System.out.println("\n+-------------------------------------------------+");
+        System.out.println("|           QUAN LY PHIEU PHAT                    |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.println("| [1] Them phieu phat                             |");
+        System.out.println("| [2] Hien thi tat ca phieu phat                  |");
+        System.out.println("| [3] Sua thong tin phieu phat                    |");
+        System.out.println("| [4] Xoa phieu phat                              |");
+        System.out.println("| [5] Tim kiem phieu phat (theo Ma PP/Ma DG)      |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.println("| [6] Ghi du lieu ra file                         |");
+        System.out.println("| [7] Doc du lieu tu file                         |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.println("| [0] Quay lai menu chinh                         |");
+        System.out.println("+-------------------------------------------------+");
+        System.out.print(">>> Vui long nhap lua chon (0-7): ");
 
         try {
             input = sc.nextLine().trim();
@@ -309,36 +320,33 @@ public void menuPhieuPhat(){
         }
         switch (choice) {
             case 1:
-                dspp.nhap(dsqdp);
-                break;
-            case 2:
                 dspp.them(dsqdp);
                 break;
-            case 3:
+            case 2:
                 dspp.hienThiTatCa();
                 break;
-            case 4:
+            case 3:
                 dspp.sua(dsqdp);
                 break;
-            case 5:
+            case 4:
                 dspp.xoa(); 
                 break;
-            case 6:
+            case 5:
                 System.out.print("Nhap Ma phieu phat hoac Ma doc gia de tim kiem: ");
                 String keyword = sc.nextLine().trim();
                 dspp.timKiem(keyword);
                 break;
-            case 7:
+            case 6:
                 dspp.ghiFile();
                 break;
-            case 8:
+            case 7:
                 dspp.docFile(dsqdp);
                 break;
             case 0:
                 System.out.println("Quay lai menu chinh...");
                 break;
             default:
-                System.out.println("Lua chon khong hop le. Vui long chon lai!");
+                System.out.println("!!! Lua chon KHONG HOP LE. Vui long chon lai tu 0 den 7 !!!");
                 break;
             }
         } while (choice != 0);
@@ -348,17 +356,21 @@ public void menuPhieuPhat(){
         String input; 
         DanhSachQuyDinhPhat dsqdp = this.dsquydinhphat;
         do {
-            System.out.println("\n--- QUAN LY QUY DINH PHAT ---");
-            System.out.println("1. Nhap thong tin quy dinh (nhap nhieu)");
-            System.out.println("2. Them quy dinh (nhap 1)");
-            System.out.println("3. Hien thi tat ca quy dinh");
-            System.out.println("4. Sua thong tin quy dinh");
-            System.out.println("5. Xoa quy dinh");
-            System.out.println("6. Tim kiem quy dinh (theo Ma phat/Noi dung)");
-            System.out.println("7. Ghi du lieu ra file Quydinhphat.txt");
-            System.out.println("8. Doc du lieu tu file Quydinhphat.txt");
-            System.out.println("0. Quay lai menu chinh");
-            System.out.print("Vui long nhap lua chon: ");
+            System.out.println("\n+-------------------------------------------------+");
+            System.out.println("|             QUAN LY QUY DINH PHAT               |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [1] Them quy dinh                               |");
+            System.out.println("| [2] Hien thi tat ca quy dinh                    |");
+            System.out.println("| [3] Sua thong tin quy dinh                      |");
+            System.out.println("| [4] Xoa quy dinh                                |");
+            System.out.println("| [5] Tim kiem quy dinh (theo Ma Phat/Noi dung)   |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [6] Ghi du lieu ra file                         |");
+            System.out.println("| [7] Doc du lieu tu file                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [0] Quay lai menu chinh                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.print(">>> Vui long nhap lua chon (0-7): ");
         try {
             input = sc.nextLine().trim();
             choice = Integer.parseInt(input);
@@ -367,36 +379,33 @@ public void menuPhieuPhat(){
         }
         switch (choice) {
             case 1:
-                dsqdp.nhap();
-                break;
-            case 2:
                 dsqdp.them();
                 break;
-            case 3:
+            case 2:
                 dsqdp.hienThiTatCa();
                 break;
-            case 4:
+            case 3:
                 dsqdp.sua();
                 break;
-            case 5:
+            case 4:
                 dsqdp.xoa(); 
                 break;
-            case 6:
+            case 5:
                 System.out.print("Nhap Ma phat hoac Noi dung de tim kiem: ");
                 String keyword = sc.nextLine().trim();
                 dsqdp.timKiem(keyword);
                 break;
-            case 7:
+            case 6:
                 dsqdp.ghiFile();
                 break;
-            case 8:
+            case 7:
                 dsqdp.docFile();
                 break;
             case 0:
                 System.out.println("Quay lai menu chinh...");
                 break;
             default:
-                System.out.println("Lua chon khong hop le. Vui long chon lai!");
+                System.out.println("!!! Lua chon KHONG HOP LE. Vui long chon lai tu 0 den 7 !!!");
                 break;
             }
         } while (choice != 0);
@@ -405,16 +414,21 @@ public void menuPhieuPhat(){
         Scanner sc = new Scanner(System.in);
         int c;
         do {
-            System.out.println("----- QUAN LY SACH -----");
-            System.out.println("1. Xem danh sach sach");
-            System.out.println("2. Them sach moi");
-            System.out.println("3. Sua thong tin sach");
-            System.out.println("4. Xoa sach");
-            System.out.println("5. Tim sach");
-            System.out.println("6. Doc file sach");
-            System.out.println("7. Ghi file sach");
-            System.out.println("0. Quay lai");
-            System.out.print("Nhap lua chon: ");
+            System.out.println("\n+-------------------------------------------------+");
+            System.out.println("|                 QUAN LY SACH                    |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [1] Xem danh sach sach                          |");
+            System.out.println("| [2] Them sach moi                               |");
+            System.out.println("| [3] Sua thong tin sach                          |");
+            System.out.println("| [4] Xoa sach                                    |");
+            System.out.println("| [5] Tim sach                                    |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [6] Doc du lieu tu file                         |");
+            System.out.println("| [7] Ghi du lieu ra file                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [0] Quay lai menu chinh                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.print(">>> Nhap lua chon (0-7): ");
             c = sc.nextInt();
             sc.nextLine();
 
@@ -435,16 +449,21 @@ public void menuPhieuPhat(){
         Scanner sc = new Scanner(System.in);
         int c;
         do {
-            System.out.println("----- QUAN LY THE LOAI-----");
-            System.out.println("1. Xem danh sach the loai");
-            System.out.println("2. Them the loai moi");
-            System.out.println("3. Sua thong tin the loai");
-            System.out.println("4. Xoa the loai");
-            System.out.println("5. Tim the loai");
-            System.out.println("6. Doc file the loai");
-            System.out.println("7. Ghi file the loai");
-            System.out.println("0. Quay lai");
-            System.out.print("Nhap lua chon: ");
+            System.out.println("\n+-------------------------------------------------+");
+            System.out.println("|               QUAN LY THE LOAI                  |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [1] Xem danh sach the loai                      |");
+            System.out.println("| [2] Them the loai moi                           |");
+            System.out.println("| [3] Sua thong tin the loai                      |");
+            System.out.println("| [4] Xoa the loai                                |");
+            System.out.println("| [5] Tim the loai                                |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [6] Doc du lieu tu file                         |");
+            System.out.println("| [7] Ghi du lieu ra file                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [0] Quay lai menu chinh                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.print(">>> Nhap lua chon (0-7): ");
             c = sc.nextInt();
             sc.nextLine();
 
@@ -465,16 +484,21 @@ public void menuPhieuPhat(){
         Scanner sc = new Scanner(System.in);
         int c;
         do {
-            System.out.println("----- QUAN LY NHA XUAT BAN-----");
-            System.out.println("1. Xem danh sach nha xuat ban");
-            System.out.println("2. Them nha xuat ban moi");
-            System.out.println("3. Sua thong tin nha xuat ban");
-            System.out.println("4. Xoa nha xuat ban");
-            System.out.println("5. Tim nha xuat ban");
-            System.out.println("6. Doc file nha xuat ban");
-            System.out.println("7. Ghi file nha xuat ban");
-            System.out.println("0. Quay lai");
-            System.out.print("Nhap lua chon: ");
+            System.out.println("\n+-------------------------------------------------+");
+            System.out.println("|             QUAN LY NHA XUAT BAN                |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [1] Xem danh sach nha xuat ban                  |");
+            System.out.println("| [2] Them nha xuat ban moi                       |");
+            System.out.println("| [3] Sua thong tin nha xuat ban                  |");
+            System.out.println("| [4] Xoa nha xuat ban                            |");
+            System.out.println("| [5] Tim nha xuat ban                            |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [6] Doc du lieu tu file                         |");
+            System.out.println("| [7] Ghi du lieu ra file                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [0] Quay lai menu chinh                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.print(">>> Nhap lua chon (0-7): ");
             c = sc.nextInt();
             sc.nextLine();
 
@@ -495,16 +519,21 @@ public void menuPhieuPhat(){
         Scanner sc = new Scanner(System.in);
         int c;
         do {
-            System.out.println("----- QUAN LY TAC GIA -----");
-            System.out.println("1. Xem danh sach tac gia");
-            System.out.println("2. Them tac gia moi");
-            System.out.println("3. Sua thong tin tac gia");
-            System.out.println("4. Xoa tac gia");
-            System.out.println("5. Tim tac gia");
-            System.out.println("6. Doc file tac gia");
-            System.out.println("7. Ghi file tac gia");
-            System.out.println("0. Quay lai");
-            System.out.print("Nhap lua chon: ");
+            System.out.println("\n+-------------------------------------------------+");
+            System.out.println("|             QUAN LY TAC GIA                     |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [1] Xem danh sach tac gia                       |");
+            System.out.println("| [2] Them tac gia moi                            |");
+            System.out.println("| [3] Sua thong tin tac gia                       |");
+            System.out.println("| [4] Xoa tac gia                                 |");
+            System.out.println("| [5] Tim tac gia                                 |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [6] Doc du lieu tu file                         |");
+            System.out.println("| [7] Ghi du lieu ra file                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [0] Quay lai menu chinh                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.print(">>> Nhap lua chon (0-7): ");
             c = sc.nextInt();
             sc.nextLine();
 
@@ -524,16 +553,21 @@ public void menuPhieuPhat(){
     private static void menuNCC() {
         int chon;
         do {
-            System.out.println("\n===== QUAN LY NHA CUNG CAP =====");
-            System.out.println("1. Them nha cung cap");
-            System.out.println("2. Xem danh sach");
-            System.out.println("3. Tim theo ma");
-            System.out.println("4. Sua nha cung cap");
-            System.out.println("5. Xoa nha cung cap");
-            System.out.println("6. Ghi file");
-            System.out.println("7. Doc file");
-            System.out.println("0. Quay lai");
-            System.out.print("Chon: ");
+            System.out.println("\n+-------------------------------------------------+");
+            System.out.println("|           QUAN LY NHA CUNG CAP                  |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [1] Them nha cung cap                           |");
+            System.out.println("| [2] Xem danh sach                               |");
+            System.out.println("| [3] Tim theo ma                                 |");
+            System.out.println("| [4] Sua nha cung cap                            |");
+            System.out.println("| [5] Xoa nha cung cap                            |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [6] Ghi du lieu ra file                         |");
+            System.out.println("| [7] Doc du lieu tu file                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [0] Quay lai menu chinh                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.print(">>> Chon chuc nang (0-7): ");
             chon = Integer.parseInt(sc.nextLine());
 
             switch (chon) {
@@ -605,16 +639,21 @@ public void menuPhieuPhat(){
     private static void menuPN() {
         int chon;
         do {
-            System.out.println("\n===== QUAN LY PHIEU NHAP =====");
-            System.out.println("1. Them phieu nhap");
-            System.out.println("2. Xem danh sach");
-            System.out.println("3. Tim theo ma phieu");
-            System.out.println("4. Sua phieu nhap");
-            System.out.println("5. Xoa phieu nhap");
-            System.out.println("6. Ghi file");
-            System.out.println("7. Doc file");
-            System.out.println("0. Quay lai");
-            System.out.print("Chon: ");
+            System.out.println("\n+-------------------------------------------------+");
+             System.out.println("|           QUAN LY PHIEU NHAP                    |");
+             System.out.println("+-------------------------------------------------+");
+             System.out.println("| [1] Them phieu nhap                             |");
+             System.out.println("| [2] Xem danh sach                               |");
+             System.out.println("| [3] Tim theo ma phieu                           |");
+             System.out.println("| [4] Sua phieu nhap                              |");
+             System.out.println("| [5] Xoa phieu nhap                              |");
+             System.out.println("+-------------------------------------------------+");
+             System.out.println("| [6] Ghi du lieu ra file                         |");
+             System.out.println("| [7] Doc du lieu tu file                         |");
+             System.out.println("+-------------------------------------------------+");
+             System.out.println("| [0] Quay lai menu chinh                         |");
+             System.out.println("+-------------------------------------------------+");
+             System.out.print(">>> Chon chuc nang (0-7): ");
             chon = Integer.parseInt(sc.nextLine());
 
             switch (chon) {
@@ -747,17 +786,22 @@ public void menuPhieuPhat(){
     public static void menuDocGia(DanhSachDocGia dsDG, Scanner sc) {
         int chon;
         do {
-            System.out.println("\n------ MENU QUAN LY DOC GIA ------");
-            System.out.println("1. Nhap danh sach doc gia");
-            System.out.println("2. Xuat danh sach doc gia");
-            System.out.println("3. Them doc gia");
-            System.out.println("4. Sua doc gia");
-            System.out.println("5. Tim doc gia theo ma");
-            System.out.println("6. Xoa doc gia theo ma");
-            System.out.println("7. Ghi danh sach vao file");
-            System.out.println("8. Doc danh sach tu file");
-            System.out.println("0. Quay lai menu chinh");
-            System.out.print("Chon chuc nang: ");
+            System.out.println("\n+-------------------------------------------------+");
+            System.out.println("|           QUAN LY DOC GIA                       |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [1] Nhap danh sach doc gia                      |");
+            System.out.println("| [2] Xuat danh sach doc gia                      |");
+            System.out.println("| [3] Them doc gia                                |");
+            System.out.println("| [4] Sua thong tin doc gia                       |");
+            System.out.println("| [5] Tim doc gia theo ma                         |");
+            System.out.println("| [6] Xoa doc gia theo ma                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [7] Ghi danh sach vao file                      |");
+            System.out.println("| [8] Doc danh sach tu file                       |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [0] Quay lai menu chinh                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.print(">>> Chon chuc nang (0-8): ");
             chon = sc.nextInt();
             sc.nextLine();
 
@@ -779,17 +823,22 @@ public void menuPhieuPhat(){
     public static void menuNhanVien(DanhSachNhanVien dsNV, Scanner sc) {
         int chon;
         do {
-            System.out.println("\n------ MENU QUAN LY NHAN VIEN ------");
-            System.out.println("1. Nhap danh sach nhan vien");
-            System.out.println("2. Xuat danh sach nhan vien");
-            System.out.println("3. Them nhan vien");
-            System.out.println("4. Sua nhan vien");
-            System.out.println("5. Tim nhan vien theo ma");
-            System.out.println("6. Xoa nhan vien theo ma");
-            System.out.println("7. Ghi danh sach vao file");
-            System.out.println("8. Doc danh sach tu file");
-            System.out.println("0. Quay lai menu chinh");
-            System.out.print("Chon chuc nang: ");
+            System.out.println("\n+-------------------------------------------------+");
+            System.out.println("|           QUAN LY NHAN VIEN                     |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [1] Nhap danh sach nhan vien                    |");
+            System.out.println("| [2] Xuat danh sach nhan vien                    |");
+            System.out.println("| [3] Them nhan vien                              |");
+            System.out.println("| [4] Sua thong tin nhan vien                     |");
+            System.out.println("| [5] Tim nhan vien theo ma                       |");
+            System.out.println("| [6] Xoa nhan vien theo ma                       |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [7] Ghi danh sach vao file                      |");
+            System.out.println("| [8] Doc danh sach tu file                       |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.println("| [0] Quay lai menu chinh                         |");
+            System.out.println("+-------------------------------------------------+");
+            System.out.print(">>> Chon chuc nang (0-8): ");
             chon = sc.nextInt();
             sc.nextLine();
 

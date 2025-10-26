@@ -32,14 +32,6 @@ public class DanhSachQuyDinhPhat{
             ds[i].nhap();
         }
     }
-    public void xuat(){
-        System.out.printf("+------------+----------------------------------------------------+------------+%n");
-        System.out.printf("| %-10s | %-50s | %-10s |%n","Ma phat","Noi dung","Tien phat");
-        System.out.printf("|------------|----------------------------------------------------|------------|%n");
-        for(QuyDinhPhat qd:ds)
-            qd.xuat();
-        System.out.printf("+------------+----------------------------------------------------+------------+%n");    
-    }
     public void them(QuyDinhPhat qd){
         if( qd == null ) return;
         if(timkiemma(qd.getMaPhat()) != -1){

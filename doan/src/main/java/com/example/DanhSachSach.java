@@ -486,5 +486,15 @@ public class DanhSachSach {
             System.out.println("Khong tim thay sach co ma "+ma);
         }
     }
+    public int timkiemma(String ma) {
+        if (ma == null || ma.trim().isEmpty()) return -1;
+        String cleanMa = ma.trim();
+        for (int i = 0; i < dss.size(); i++) {
+            if (dss.get(i) != null && dss.get(i).getMa_sach().equals(cleanMa)) {
+                return i;
+              }
+            }
+            return -1;
+    }
 }
 

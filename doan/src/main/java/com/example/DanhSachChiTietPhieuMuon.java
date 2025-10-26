@@ -37,22 +37,6 @@ public class DanhSachChiTietPhieuMuon {
             ds[i].nhap(dspm, dss); 
         }
     }
-    public void xuatt(){
-        System.out.printf("+-----------------+-----------------+------------+\n");
-        System.out.printf("| %-15s | %-15s | %-10s |%n","Ma phieu muon","Ma sach","So luong");
-        System.out.printf("|-----------------|-----------------|------------|\n");
-    }
-    public void xuatd(){
-        System.out.printf("+-----------------+-----------------+------------+\n");
-    }
-    public void xuat(){
-        xuatt();
-        for(ChiTietPhieuMuon ctpm : ds){
-            if( ctpm == null) continue;
-            ctpm.xuat();
-        }
-        xuatd();
-    }
     public void them(ChiTietPhieuMuon ctpm){
         if (timkiemma(ctpm.getMaPhieuMuon(), ctpm.getMaSach()) != -1) {
              System.out.println("Chi tiet phieu muon nay da ton tai.");

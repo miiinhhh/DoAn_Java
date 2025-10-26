@@ -39,22 +39,6 @@
                 ds[i].nhap();
             }
         }
-        private void xuatt(){
-            System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+------------------+");
-            System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s | %-16s |%n","Ma phieu muon","Ma doc gia","Ma nhan vien","Ngay lap phieu","Ngay tra du kien","Ngay tra thuc te");
-            System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+------------------+");
-        }
-        private void xuatd(){
-            System.out.println("+-----------------+-----------------+-----------------+-----------------+-----------------+------------------+");
-        }
-        public void xuat(){
-            xuatt();
-            for(PhieuMuon ht : ds){
-                if(ht == null) continue;
-                ht.xuat();
-            }
-            xuatd();
-        }
         public void them(PhieuMuon ht){
             if(ht == null) return;
             if(timkiemma(ht.getMaPhieuMuon()) != -1 ){
@@ -273,70 +257,5 @@
         public int getSoLuong(){
                 return ds.length;
         }
-
-    
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        DanhSachPhieuMuon ds = new DanhSachPhieuMuon();
-        // Thử đọc file nếu có
-        try {
-            ds.docFile();
-            System.out.println("Da doc du lieu tu Phieumuon.txt (neu ton tai).\n");
-        } catch (Exception e) {
-            // docFile in ra thong bao loi ben trong; tiếp tục cho phép thao tac
-        }
-
-        while (true) {
-            System.out.println("\n--- QUAN LY PHIEU MUON ---");
-            System.out.println("1. Nhap thong tin phieu muon (nhap nhieu)");
-            System.out.println("2. Them phieu muon (nhap 1)");
-            System.out.println("3. Hien thi tat ca phieu muon");
-            System.out.println("4. Sua thong tin phieu muon");
-            System.out.println("5. Xoa phieu muon");
-            System.out.println("6. Tim kiem phieu muon (theo Ma phieu muon / Ma doc gia)");
-            System.out.println("7. Ghi du lieu ra file Phieumuon.txt");
-            System.out.println("8. Doc du lieu tu file Phieumuon.txt");
-            System.out.println("0. Thoat");
-            System.out.print("Lua chon: ");
-            String line = sc.nextLine().trim();
-            int ch;
-            try { ch = Integer.parseInt(line); } catch (Exception ex) { ch = -1; }
-
-            switch (ch) {
-                case 1:
-                    ds.nhap();
-                    break;
-                case 2:
-                    ds.them();
-                    break;
-                case 3:
-                    ds.xuat();
-                    break;
-                case 4:
-                    ds.sua();
-                    break;
-                case 5:
-                    ds.xoa();
-                    break;
-                case 6:
-                    System.out.print("Nhap tu khoa tim kiem: ");
-                    String kw = sc.nextLine().trim();
-                    ds.timKiem(kw);
-                    break;
-                case 7:
-                    ds.ghiFile();
-                    break;
-                case 8:
-                    ds.docFile();
-                    break;
-                case 0:
-                    System.out.println("Thoat chuong trinh.");
-                    sc.close();
-                    return;
-                default:
-                    System.out.println("Lua chon khong hop le. Vui long chon lai.");
-            }
-        }
-    }
 
 }

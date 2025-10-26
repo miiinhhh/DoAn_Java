@@ -33,17 +33,6 @@
                 ds[i].nhap(dsqdp);
             } 
         }
-        public void xuat() {
-            System.out.printf("+-----------------+-----------------+-----------------+-----------------+------------+%n");
-            System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-10s |%n", "MaPhieuPhat", "MaDocGia", "MaPhieuMuon", "MaPhat", "TienPhat");
-            System.out.printf("+-----------------+-----------------+-----------------+-----------------+------------+%n");
-            for (PhieuPhat p : ds) {
-                if (p != null)
-                    System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-10d |%n",
-                            p.getMaPhieuPhat(), p.getMaDocGia(), p.getMaPhieuMuon(), p.getMaPhat(), p.getTienPhat());
-            }
-            System.out.printf("+-----------------+-----------------+-----------------+-----------------+------------+%n");
-        }
         public void them(PhieuPhat p){
             if(p == null) return;
             if(timkiemma(p.getMaPhieuPhat()) != -1){

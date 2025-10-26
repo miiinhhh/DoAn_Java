@@ -1,7 +1,9 @@
 package com.example;
 
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class DanhSachDocGia {
     private int n;
@@ -213,5 +215,15 @@ public class DanhSachDocGia {
             }
         } while (chon != 0);
         sc.close();
+    }
+    public int timkiemma(String ma) {
+        if (ma == null || ma.trim().isEmpty()) return -1;
+        String cleanMa = ma.trim();
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getMaDocGia().trim().equalsIgnoreCase(cleanMa)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

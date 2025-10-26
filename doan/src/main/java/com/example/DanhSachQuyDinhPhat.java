@@ -12,7 +12,7 @@ public class DanhSachQuyDinhPhat{
     Scanner sc = new Scanner(System.in);
     public void nhap(){
         System.out.println("Nhap so luong quy dinh can nhap: ");
-        int bd = ds.length;
+        int count =0;
         int sl;
         while(true){
             String s = sc.nextLine().trim();
@@ -26,12 +26,21 @@ public class DanhSachQuyDinhPhat{
                 System.out.println("Vui long nhap so nguyen. Nhap lai: ");
             }
         }
-        ds = Arrays.copyOf(ds,ds.length + sl);
-        for(int i = bd; i < ds.length; i++){
-            ds[i] = new QuyDinhPhat();
-            ds[i].nhap();
+        for(int i = 0; i < sl; i++){
+            QuyDinhPhat newQuyDinh = new QuyDinhPhat(); 
+            System.out.println("\n--- Nhap quy dinh thu " + (i + 1) + " ---");
+            newQuyDinh.nhap(); 
+            if(timkiemma(newQuyDinh.getMaPhat()) != -1){ 
+                System.out.println("Loi: Ma phat " + newQuyDinh.getMaPhat() + " da ton tai. Vui long nhap lai quy dinh nay.");
+                i--;
+                continue; 
+            }
+            ds = Arrays.copyOf(ds, ds.length + 1);
+            ds[ds.length - 1] = newQuyDinh; 
+            count++;
         }
-    }
+        System.out.println("Da them thanh cong " + count + " quy dinh."); 
+}
     public void them(QuyDinhPhat qd){
         if( qd == null ) return;
         if(timkiemma(qd.getMaPhat()) != -1){
@@ -91,9 +100,13 @@ public class DanhSachQuyDinhPhat{
                     case "1":{
                         System.out.print("Nhap noi dung moi: ");
                         String newNd = sc.nextLine().trim();
-                        qd.setNoiDung(newNd);
-                            System.out.println("Cap nhat thanh cong");
+                        if (newNd.isEmpty()) {
+                            System.out.println("Loi: Noi dung khong duoc de trong! Giu nguyen noi dung cu.");
                             break;
+                        }
+                        qd.setNoiDung(newNd);
+                        System.out.println("Cap nhat thanh cong");
+                        break;
                     }
                     case "2":{
                         while(true){
@@ -143,7 +156,7 @@ public class DanhSachQuyDinhPhat{
     public void docFile(){
         File file = new File("src/main/java/com/example/Quydinhphat.txt");
         if(!file.exists()){
-            System.out.println("File không tồn tại !!");
+            System.out.println("File khong ton tai !!");
             return;
         }
         ds = new QuyDinhPhat[0];
@@ -166,7 +179,7 @@ public class DanhSachQuyDinhPhat{
                     }
                 }
             }
-            System.out.println("Doc file thanh cong");
+            System.out.println("Doc du lieu tu file Quydinhphat.txt thanh cong");
         }catch(Exception e){
             System.out.println("Loi doc file: " + e.getMessage());
         }    
@@ -176,7 +189,7 @@ public class DanhSachQuyDinhPhat{
             for(QuyDinhPhat qdp : ds){
                 w.println(qdp.toFile());
             }
-            System.out.println("Ghi file thanh cong.");
+            System.out.println("Ghi du lieu vao file Quydinhphat.txt thanh cong");
         }catch(Exception e){
             System.out.println("Loi ghi file: " + e.getMessage());
         }

@@ -1,8 +1,10 @@
 package com.example;
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class DanhSachNhanVien {
     private int n;
@@ -264,5 +266,15 @@ public class DanhSachNhanVien {
             }
         } while (chon != 0);
         sc.close();
+    }
+    public int timkiemma(String ma) {
+        if (ma == null || ma.trim().isEmpty()) return -1;
+        String cleanMa = ma.trim();
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getMnv().trim().equalsIgnoreCase(cleanMa)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

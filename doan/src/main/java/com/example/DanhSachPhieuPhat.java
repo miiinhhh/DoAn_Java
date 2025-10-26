@@ -16,6 +16,7 @@
         public void nhap(DanhSachQuyDinhPhat dsqdp){
             System.out.print("Nhap so luong phieu phat can nhap: ");
             int sl;
+            int count = 0;
             while(true){
                 String s = sc.nextLine().trim();
                 try{
@@ -26,12 +27,20 @@
                     System.out.print("Vui long nhap so nguyen. Nhap lai: ");
                 }
             }
-            int bd = ds.length;
-            ds = Arrays.copyOf(ds,ds.length+sl);
-            for(int i = bd; i < ds.length; i++){
-                ds[i] = new PhieuPhat();
-                ds[i].nhap(dsqdp);
-            } 
+            for(int i = 0; i < sl; i++){ 
+                PhieuPhat newPhat = new PhieuPhat();
+                System.out.println("Nhap thong tin phieu phat thu " + (i + 1) + ":"); 
+                newPhat.nhap(dsqdp);
+                if(timkiemma(newPhat.getMaPhieuPhat()) != -1){
+                    System.out.println("Ma phieu phat da ton tai. Vui lòng nhập lại phiếu này.");
+                    i--;
+                    continue;
+                }
+                ds = Arrays.copyOf(ds, ds.length + 1);
+                ds[ds.length - 1] = newPhat;
+                count++;
+            }
+            System.out.println("Da them thanh cong " + count + " phieu phat."); 
         }
         public void them(PhieuPhat p){
             if(p == null) return;
@@ -72,7 +81,7 @@
             System.out.println("4. Sua so tien phat");
             System.out.print("Lua chon cua ban: ");
         }
-        public void sua(DanhSachQuyDinhPhat dsqdp){
+        public void sua(DanhSachQuyDinhPhat dsqdp,DanhSachDocGia dsdg, DanhSachPhieuMuon dspm){
             if(ds.length == 0){
                 System.out.println("Danh sach phieu phat dang rong !!");
                 return;
@@ -94,14 +103,26 @@
                         case "1":{
                             System.out.print("Nhap ma doc gia moi (Nhan Enter de giu nguyen): ");
                             String mdg = sc.nextLine().trim();
-                            if(!mdg.isEmpty()) p.setMaDocGia(mdg);
+                            if(!mdg.isEmpty()){
+                                if (dsdg.timkiemma(mdg) == -1) {
+                                    System.out.println("Loi: Ma doc gia moi khong ton tai! Giu nguyen gia tri cu.");
+                                    break;
+                                }
+                                p.setMaDocGia(mdg);
+                            }
                             System.out.println("Cap nhat thanh cong");
                             break;
                         }
                         case "2":{
                             System.out.print("Nhap ma phieu muon moi (Nhan Enter de giu nguyen): ");
                             String mpm = sc.nextLine().trim();
-                            if(!mpm.isEmpty()) p.setMaPhieuMuon(mpm);
+                            if(!mpm.isEmpty()){
+                                if (dspm.timkiemma(mpm) == -1) {
+                                    System.out.println("Loi: Ma phieu muon moi khong ton tai! Giu nguyen gia tri cu.");
+                                    break;
+                                }
+                                p.setMaPhieuMuon(mpm);
+                            }
                             System.out.println("Cap nhat thanh cong");
                             break;
                         }
@@ -117,12 +138,15 @@
                             String tp = sc.nextLine().trim();
                             if(!tp.isEmpty()){ 
                                 try{
-                                    p.setTienPhat(Integer.parseInt(tp));
+                                    int newTp = Integer.parseInt(tp);
+                                    p.setTienPhat(newTp);
+                                    System.out.println("Cap nhat thanh cong");
                                 } catch(NumberFormatException e){
                                     System.out.println("Nhap sai, giu nguyen tien phat !!");
                                 }
+                            } else {
+                                System.out.println("Bo qua cap nhat so tien phat.");
                             }
-                            System.out.println("Cap nhat thanh cong");
                             break;
                         }
                         case "0":{
@@ -206,7 +230,7 @@
                         ds[ds.length-1] = new PhieuPhat(mpp, mdg, mpm, mp, tp);
                     }
                 }
-                System.out.println("Doc file thanh cong");
+                System.out.println("Doc du lieu tu file Phieuphat.txt thanh cong");
             }catch(Exception e){
                 System.out.println("Loi doc file: "+ e.getMessage());
             }
@@ -216,7 +240,7 @@
                 for (PhieuPhat p : ds) {
                     w.println(p.toFile());
                 }
-                System.out.println("Ghi file thanh cong.");
+                System.out.println("Ghi du lieu vao file Phieuphat.txt thanh cong");
             } catch (Exception e) {
                 System.out.println("Loi ghi file: " + e.getMessage());
             }

@@ -18,25 +18,39 @@ public class DanhSachChiTietPhieuMuon {
     
    
     public void nhap(DanhSachPhieuMuon dspm, DanhSachSach dss){
-        System.out.print("Nhap so luong chi tiet phieu muon: ");
-        int bd = ds.length;
-        int k ;
-        while (true) {
-            String s = sc.nextLine().trim();
-            try {
-                k = Integer.parseInt(s);
-                if (k < 0) { System.out.println("So luong phai >= 0. Vui long nhap lai: "); continue; }
-                break;
-            } catch (NumberFormatException e) {
-                System.out.print("Vui long nhap so nguyen. Nhap lai: ");
+    System.out.print("Nhap so luong chi tiet phieu muon can nhap: ");
+    int k;
+    int count = 0;
+    while (true) {
+        String s = sc.nextLine().trim();
+        try {
+            k = Integer.parseInt(s);
+            if (k < 0) { 
+                System.out.print("So luong phai >= 0. Vui long nhap lai: "); 
+                continue; 
             }
-        }
-        ds = Arrays.copyOf(ds,ds.length + k);
-        for(int i = bd; i < ds.length; i++){
-            ds[i] = new ChiTietPhieuMuon();
-            ds[i].nhap(dspm, dss); 
+            break;
+        } catch (NumberFormatException e) {
+            System.out.print("Vui long nhap so nguyen. Nhap lai: ");
         }
     }
+    for(int i = 0; i < k; i++){
+        ChiTietPhieuMuon newCt = new ChiTietPhieuMuon();
+        System.out.println("\n--- Nhap chi tiet thu " + (i + 1) + " ---");
+        newCt.nhap(dspm, dss); 
+        String mapm = newCt.getMaPhieuMuon();
+        String mas = newCt.getMaSach();
+        if(timkiemma(mapm, mas) != -1) {
+            System.out.println("Loi: Chi tiet phieu muon [" + mapm + ", " + mas + "] da ton tai. Khong them.");
+            continue; 
+        }
+        ds = Arrays.copyOf(ds, ds.length + 1);
+        ds[ds.length - 1] = newCt;
+        count++;
+    }
+    
+    System.out.println("Them thanh cong " + count + " chi tiet phieu muon.");
+}
     public void them(ChiTietPhieuMuon ctpm){
         if (timkiemma(ctpm.getMaPhieuMuon(), ctpm.getMaSach()) != -1) {
              System.out.println("Chi tiet phieu muon nay da ton tai.");
@@ -186,7 +200,7 @@ public class DanhSachChiTietPhieuMuon {
                     }
                 }
             }
-            System.out.println("Doc file thanh cong.");
+            System.out.println("Doc du lieu tu file Chitietphieumuon.txt thanh cong");
         }catch(Exception e){
             System.out.println("Loi doc file: " + e.getMessage());
         }
@@ -196,7 +210,7 @@ public class DanhSachChiTietPhieuMuon {
             for(ChiTietPhieuMuon ctpm : ds){
                 w.println(ctpm.toFile());
             }
-            System.out.println("Ghi file thanh cong.");
+            System.out.println("Ghi du lieu vao file Chitietphieumuon.txt thanh cong");
         }catch(Exception e){
             System.out.println("Loi ghi file: " + e.getMessage());
         }

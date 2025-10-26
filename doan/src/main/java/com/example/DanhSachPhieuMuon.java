@@ -22,22 +22,30 @@
         public void nhap(){
             System.out.println("Nhap so luong phieu muon can nhap: ");
             int k;
+            int count = 0; 
             while(true){
                 String s = sc.nextLine().trim();
                 try{
                     k = Integer.parseInt(s);
-                    if(k<0){System.out.print("So luong phai >= 0.Vui long nhap lai: "); continue; }
+                    if(k < 0){ System.out.print("So luong phai >= 0. Vui long nhap lai: "); continue; }
                     break;
                 }catch(NumberFormatException e){
                     System.out.print("Vui long nhap so nguyen: ");
                 }
             }
-            int bd = ds.length;
-            ds = Arrays.copyOf(ds,ds.length + k);
-            for(int i = bd; i < ds.length; i++){
-                ds[i] = new PhieuMuon();
-                ds[i].nhap();
+            for(int i = 0; i < k; i++){
+                PhieuMuon newPhieu = new PhieuMuon();
+                System.out.println("\n--- Nhap thong tin phieu muon thu " + (i + 1) + " ---");
+                newPhieu.nhap();
+                if(timkiemma(newPhieu.getMaPhieuMuon()) != -1){ 
+                    System.out.println("Loi: Ma phieu muon da ton tai. Bo qua phieu nay.");
+                    continue;
+                }
+                ds = Arrays.copyOf(ds, ds.length + 1);
+                ds[ds.length - 1] = newPhieu;
+                count++;
             }
+            System.out.println("Them thanh cong " + count + " phieu muon.");
         }
         public void them(PhieuMuon ht){
             if(ht == null) return;
@@ -88,7 +96,7 @@
             System.out.println("0. Quay lai");
             System.out.print("Lua chon cua ban la: ");
         }
-        public void sua(){
+        public void sua(DanhSachDocGia dsdg, DanhSachNhanVien dsnv){
             if(ds.length == 0){
                 System.out.println("Danh sach dang bi rong !!");
                 return;
@@ -109,20 +117,40 @@
                     String choice = sc.nextLine().trim();
                     switch(choice){
                         case "1":{
-                        System.out.print("Nhap ma phieu muon moi: ");
-                        ht.setMaPhieuMuon(sc.nextLine().trim());
-                        System.out.println("Da cap nhat thanh cong");
-                        break;
+                            String oldMa = ht.getMaPhieuMuon();
+                            System.out.print("Nhap ma phieu muon moi: ");
+                            String newMa = sc.nextLine().trim();
+                            if (newMa.equals(oldMa)) {
+                                System.out.println("Ma phieu muon khong thay doi. Bo qua cap nhat.");
+                                break;
+                            }
+                            if (timkiemma(newMa) != -1) {
+                                System.out.println("Loi: Ma phieu muon moi da ton tai trong danh sach !!");
+                                break;
+                            }
+                            ht.setMaPhieuMuon(newMa); 
+                            System.out.println("Da cap nhat thanh cong");
+                            break;
                         }
                         case "2": {
                             System.out.print("Nhap ma doc gia moi: ");
-                            ht.setMaDocGia(sc.nextLine().trim());
+                            String newMaDG = sc.nextLine().trim();
+                            if (dsdg.timkiemma(newMaDG) == -1) { 
+                                System.out.println("Loi: Ma doc gia moi khong ton tai!");
+                                break;
+                            }
+                            ht.setMaDocGia(newMaDG);
                             System.out.println("Da cap nhat thanh cong");
-                            break;  
+                            break; 
                         }
                         case "3": {
                             System.out.print("Nhap ma nhan vien moi: ");
-                            ht.setMaNhanVien(sc.nextLine().trim());
+                            String newMaNV = sc.nextLine().trim();
+                            if (dsnv.timkiemma(newMaNV) == -1) { 
+                                System.out.println("Loi: Ma nhan vien moi khong ton tai!");
+                                break;
+                            }
+                            ht.setMaNhanVien(newMaNV);
                             System.out.println("Da cap nhat thanh cong");
                             break;
                         }
@@ -213,7 +241,7 @@
                         ds[ds.length-1] = new PhieuMuon(parts[0],parts[1], parts[2],parts[3], parts[4], parts[5]);
                     }
                 }
-                System.out.println("Doc file xong");
+                System.out.println("Doc du lieu tu file Phieumuon.txt thanh cong");
             }catch (Exception e){
                 System.out.println("Loi doc file: " + e);
             }
@@ -223,8 +251,9 @@
                 for( PhieuMuon pm : ds){
                     pw.println(pm.toFile());
                 }
+                System.out.println("Ghi du lieu vao file Phieumuon.txt thanh cong");  
             }catch(Exception e){
-                System.out.println("Loi ghi file: " +e);   
+                System.out.println("Loi ghi file: " +e); 
             }
         }
         public void hienThiTatCa() {
@@ -244,6 +273,7 @@
         }
         public void timKiem(String keyword) {
                 if (keyword == null) keyword = "";
+                keyword = keyword.trim();
                 boolean found = false;
                 for (PhieuMuon pm : ds) {
                     if (pm.getMaPhieuMuon().contains(keyword) || pm.getMaDocGia().contains(keyword)) {

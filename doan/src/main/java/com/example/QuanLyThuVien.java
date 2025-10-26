@@ -1,5 +1,4 @@
 package com.example;
-import java.util.Arrays;
 import java.util.Scanner;
 public class QuanLyThuVien{
     private DanhSachSach dss=new DanhSachSach();
@@ -183,7 +182,6 @@ public class QuanLyThuVien{
                 } catch (NumberFormatException e) {
                     choice = -1; 
                 }
-                System.out.println("---------------------------");
                 switch (choice) {
                     case 1:
                        dsphieumuon.nhap(); 
@@ -247,9 +245,6 @@ public void menuChiTietPhieuMuon(){
         } catch (NumberFormatException e) {
             choice = -1; 
         }
-
-        System.out.println("---------------------------");
-
         switch (choice) {
             case 1:
                 dsctpm.nhap(dsphieumuon,dss);
@@ -312,9 +307,6 @@ public void menuPhieuPhat(){
         } catch (NumberFormatException e) {
             choice = -1; 
         }
-
-        System.out.println("---------------------------");
-
         switch (choice) {
             case 1:
                 dspp.nhap(dsqdp);
@@ -373,7 +365,6 @@ public void menuPhieuPhat(){
         } catch (NumberFormatException e) {
             choice = -1; 
         }
-        System.out.println("---------------------------");
         switch (choice) {
             case 1:
                 dsqdp.nhap();

@@ -243,15 +243,15 @@
                     System.out.println("Danh sach phieu muon trong!");
                     return;
                 }
-                System.out.printf("+-----------------+-----------------+-----------------+-----------------+------------+------------+%n");
+                System.out.printf("+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+%n");
                 System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s | %-16s |%n", "MaPhieuMuon", "MaDocGia", "MaNhanVien", "NgayLapPhieu", "NgayTraDukien","NgayTraThucte");
-                System.out.printf("+-----------------+-----------------+-----------------+-----------------+------------+------------+%n");
+                System.out.printf("+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+%n");
                 for (PhieuMuon pm : ds) {
                     if (pm == null) continue;
                     System.out.printf("| %-15s | %-15s | %-15s | %-15s | %-15s | %-16s |%n",
                             pm.getMaPhieuMuon(), pm.getMaDocGia(), pm.getMaNhanVien(), pm.getNgayLapPhieu(), pm.getNgayTraDuKien(), pm.getNgayTraThucTe());
                 }
-                System.out.printf("+-----------------+-----------------+-----------------+-----------------+------------+------------+%n");
+                System.out.printf("+-----------------+-----------------+-----------------+-----------------+-----------------+-----------------+%n");
         }
         public void timKiem(String keyword) {
                 if (keyword == null) keyword = "";

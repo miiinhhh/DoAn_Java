@@ -35,17 +35,19 @@ public class Sach {
     private String ma_the_loai;
     private String ma_tac_gia;
     private String ma_nxb;
+    private int so_luong;
     private Ngay ngay_xuat_ban;
     public Sach(){
         
     }
-    public Sach(String ma_sach,String ten_sach,String ma_the_loai,String ma_tac_gia,String ma_nxb,Ngay ngay_xuat_ban){
+    public Sach(String ma_sach,String ten_sach,String ma_the_loai,String ma_tac_gia,String ma_nxb,int so_luong,Ngay ngay_xuat_ban){
         this.ma_sach = ma_sach;
         this.ten_sach = ten_sach;
         this.ma_the_loai = ma_the_loai;
         this.ma_tac_gia = ma_tac_gia;
         this.ma_nxb = ma_nxb;
         this.ngay_xuat_ban = ngay_xuat_ban;
+        this.so_luong = so_luong;
     }
     public String getMa_sach() {
         return ma_sach;
@@ -88,6 +90,14 @@ public class Sach {
         this.ma_nxb = ma_nxb;
     }
 
+    public double getSo_luong() {
+        return so_luong;
+    }
+
+    public void setSo_luong(int so_luong) {
+        this.so_luong = so_luong;
+    }
+
     public Ngay getNgay_xuat_ban() {
         return ngay_xuat_ban;
     }
@@ -97,13 +107,13 @@ public class Sach {
     }
     public String toFileString() {
         return "Thuong, " + ma_sach + ", " + ten_sach + ", " + ma_the_loai + ", " + ma_tac_gia
-            + ", " + ma_nxb + ", " + ngay_xuat_ban + ", -";
+            + ", " + ma_nxb + ", " + ngay_xuat_ban + ", " + so_luong +", - ";
     }
     @Override
     public String toString() {
         // Định dạng hiển thị cơ bản cho Sách Thường
-        return String.format("| %-6s | %-20s | %-4s | %-4s | %-4s | %s |", 
-            this.ma_sach, this.ten_sach, this.ma_the_loai, this.ma_tac_gia, 
-            this.ma_nxb, this.ngay_xuat_ban.toString());
+        return String.format("| %-6s | %-20s | %-4s | %-4s | %-4s | %d | %s |", 
+            this.ma_sach, this.ten_sach, this.ma_the_loai, this.ma_tac_gia,
+            this.ma_nxb, this.so_luong, this.ngay_xuat_ban.toString());
     }
 }

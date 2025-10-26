@@ -18,31 +18,6 @@ public class TacGia {
         this.ngay_sinh=ngay_sinh;
     }
     
-    //giu rang buoc 2 chieu
-    public void themSach(Sach s){
-        if(!dsSach.contains(s)) dsSach.add(s);
-    }
-
-    public void xoaSach(Sach s){
-        dsSach.remove(s);
-    }
-
-    public ArrayList<Sach> getDsSach(){
-        return dsSach;
-    }
-    
-    public void xoaSachTheoMa(String maSach) {
-        if (maSach == null) return;
-        Iterator<Sach> it = dsSach.iterator();
-        while (it.hasNext()) {
-            Sach x = it.next();
-            if (x.getMa_sach().equals(maSach)) {
-                it.remove();
-                break; // nếu chỉ có 1 quyển cần xóa, break; nếu có thể có nhiều thì bỏ break
-            }
-        }
-    }
-    
     public String getMa_tac_gia() {
         return ma_tac_gia;
     }

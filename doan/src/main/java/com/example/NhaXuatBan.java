@@ -13,17 +13,6 @@ public class NhaXuatBan {
         this.ma_nxb=ma_nxb;
         this.ten_nxb=ten_nxb;
     }
-    public void themSach(Sach s){
-        if(!dsSach.contains(s)) dsSach.add(s);
-    }
-
-    public void xoaSach(Sach s){
-        dsSach.remove(s);
-    }
-
-    public ArrayList<Sach> getDsSach(){
-        return dsSach;
-    }
     
     public String getMa_nxb() {
         return ma_nxb;

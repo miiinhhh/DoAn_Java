@@ -121,7 +121,7 @@ public class Main1_2 {
             sc.nextLine();
 
             switch(c) {
-                case 1: dstl.XemTacGia(); break;
+                case 1: dstl.XemTheLoai(); break;
                 case 2: dstl.ThemTheLoai(); break;
                 case 3: dstl.SuaTheLoai(); break;
                 case 4: dstl.XoaTheLoai(); break;

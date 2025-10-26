@@ -441,14 +441,14 @@ public void menuPhieuPhat(){
             sc.nextLine();
 
             switch(c) {
-                case 1: dstl.XemTacGia(); break;
+                case 1: dstl.XemTheLoai(); break;
                 case 2: dstl.ThemTheLoai(); break;
                 case 3: dstl.SuaTheLoai(); break;
                 case 4: dstl.XoaTheLoai(); break;
                 case 5: dstl.TimTheLoai(); break;
                 case 6: dstl.DocFileTheLoai("src/main/java/com/example/TheLoai.txt");
                 case 7: dstl.GhiFileTheLoai("src/main/java/com/example/TheLoai.txt"); break;
-                case 0: break;
+                case 0: System.out.println("Quay lai menu chinh..."); break;
                 default: System.out.println("Lua chon khong hop le!");
             }
         } while(c != 0);
@@ -478,7 +478,7 @@ public void menuPhieuPhat(){
                 case 5: dsnxb.TimNhaXuatBan(); break;
                 case 6: dsnxb.DocFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt"); break;
                 case 7: dsnxb.GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt"); break;
-                case 0: break;
+                case 0: System.out.println("Quay lai menu chinh..."); break;
                 default: System.out.println("Lua chon khong hop le!");
             }
         } while(c != 0);
@@ -508,7 +508,7 @@ public void menuPhieuPhat(){
                 case 5: dstg.TimTacGia(); break;
                 case 6: dstg.DocFileTacGia("src/main/java/com/example/TacGia.txt"); break;
                 case 7: dstg.GhiFileTacGia("src/main/java/com/example/TacGia.txt"); break;
-                case 0: break;
+                case 0: System.out.println("Quay lai menu chinh..."); break;
                 default: System.out.println("Lua chon khong hop le!");
             }
         } while(c != 0);

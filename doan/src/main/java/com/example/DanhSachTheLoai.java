@@ -56,7 +56,15 @@ public class DanhSachTheLoai {
         }
         return null;
     }
-    public void XemTacGia(){
+
+    public void ThemTheLoaiKhiSuaSachKhacMa(String ma_tl){
+        Scanner sc = new Scanner(System.in);
+        TheLoai tl_moi = NhapThongTinTheLoaiCoThamSo(ma_tl);
+        dstl.add(tl_moi);
+        GhiFileTheLoai("TheLoai.txt");
+        System.out.println("Da them the loai moi co ma: " + tl_moi.getMa_the_loai());
+    }
+    public void XemTheLoai(){
         for(TheLoai tl : dstl){
             System.out.println(tl);
         }
@@ -64,8 +72,24 @@ public class DanhSachTheLoai {
     TheLoai NhapThongTinTheLoai(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap thong tin the loai: ");
-        System.out.print("Nhap ma the loai: ");
-        String ma = sc.nextLine();
+        String ma;
+        boolean ma_hop_le  = false;
+        do {
+            System.out.print("Nhap ma the loai (TLxx): ");
+            ma = sc.nextLine().trim();
+            if (!ma.matches("TL\\d+")) {
+                System.out.println("Ma khong dung dinh dang. Vui long nhap lai!");
+                continue;
+            }
+            ma_hop_le = true;
+            for (TheLoai tl : dstl) {
+                if (tl.getMa_the_loai().equals(ma)) {
+                    System.out.println("Ma da ton tai. Vui long nhap lai!");
+                    ma_hop_le = false;
+                    break;
+                }
+            }
+        }while(!ma_hop_le);
         System.out.print("Nhap ten the loai: ");
         String ten = sc.nextLine();
         System.out.print("Nhap mo ta the loai: ");
@@ -132,7 +156,6 @@ public class DanhSachTheLoai {
         while(true){
             Sach sach_moi = dss.NhapThongTinSach();
             sach_moi.setMa_tac_gia(the_loai_moi.getMa_the_loai());
-            the_loai_moi.themSach(sach_moi);
             dss.ThemSachTheoMa(sach_moi);
             dss.GhiFileSach("Sach.txt");
             System.out.println("Ban co muon them sach khac cho the loai nay khong? (c/k): ");
@@ -142,9 +165,9 @@ public class DanhSachTheLoai {
             }
         }   
     }
-    public void ThemTheLoaiKhiSachCoMa(){
+    public void ThemTheLoaiKhiSachKhacMa(String ma_tl){
         Scanner sc = new Scanner(System.in);
-        TheLoai the_loai_moi = NhapThongTinTheLoai();
+        TheLoai the_loai_moi = NhapThongTinTheLoaiCoThamSo(ma_tl);
         dstl.add(the_loai_moi);
         GhiFileTheLoai("TheLoai.txt");
         System.out.println("Da them the loai moi co ma: " + the_loai_moi.getMa_the_loai());
@@ -174,8 +197,8 @@ public class DanhSachTheLoai {
         for(int i = 0;i < dstl.size();i++){   //ta dung vong lap chi so vi neu lam for-each ma remove(s) thi khong an toan
             if(dstl.get(i).getMa_the_loai().equals(ma)){
                 TheLoai tl = dstl.get(i);
-                // bắt buộc xóa tất cả sách của tác giả này
-                for(Sach s : new ArrayList<>(dss.getDSSachCuaTacGia(ma))){
+                // bắt buộc xóa tất cả sách của the loai này
+                for(Sach s : new ArrayList<>(dss.getDSSachCuaTheLoai(ma))){
                     dss.XoaSachTheoMa(s.getMa_sach());
                 }
                 dstl.remove(i);

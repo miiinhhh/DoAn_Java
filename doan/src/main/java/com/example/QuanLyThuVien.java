@@ -167,8 +167,8 @@ public class QuanLyThuVien{
                 default:
                     System.out.println("!!!Lua chon KHONG HOP LE. Vui long nhap lai (1-13)!");
             }
-            }while(choice != 13);
-        }
+        }while(choice != 13);
+    }
     public void menuPhieuMuon(){
     int choice = -1;
     String input; 
@@ -491,7 +491,7 @@ public void menuPhieuPhat(){
                 case 5: dstl.TimTheLoai(); break;
                 case 6: dstl.DocFileTheLoai("src/main/java/com/example/TheLoai.txt");
                 case 7: dstl.GhiFileTheLoai("src/main/java/com/example/TheLoai.txt"); break;
-                case 0: break;
+                case 0: System.out.println("Quay lai menu chinh..."); break;
                 default: System.out.println("Lua chon khong hop le!");
             }
         } while(c != 0);
@@ -526,7 +526,7 @@ public void menuPhieuPhat(){
                 case 5: dsnxb.TimNhaXuatBan(); break;
                 case 6: dsnxb.DocFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt"); break;
                 case 7: dsnxb.GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt"); break;
-                case 0: break;
+                case 0: System.out.println("Quay lai menu chinh..."); break;
                 default: System.out.println("Lua chon khong hop le!");
             }
         } while(c != 0);
@@ -561,7 +561,7 @@ public void menuPhieuPhat(){
                 case 5: dstg.TimTacGia(); break;
                 case 6: dstg.DocFileTacGia("src/main/java/com/example/TacGia.txt"); break;
                 case 7: dstg.GhiFileTacGia("src/main/java/com/example/TacGia.txt"); break;
-                case 0: break;
+                case 0: System.out.println("Quay lai menu chinh..."); break;
                 default: System.out.println("Lua chon khong hop le!");
             }
         } while(c != 0);
@@ -873,8 +873,8 @@ public void menuPhieuPhat(){
         } while (chon != 0);
     }
     public static void main(String[] args) {
-    QuanLyThuVien ql = new QuanLyThuVien();
-    ql.docTatCaFile();
-    ql.menu();
+        QuanLyThuVien ql = new QuanLyThuVien();
+        ql.docTatCaFile();
+        ql.menu();
     }
 }

@@ -4,8 +4,7 @@ import java.io.*;
 public class Main1_2 {
     public static void main(String[] args) {
     Scanner sc = new Scanner(System.in);
-    ArrayList<TacGia> dstgList = new ArrayList<>();
-    DanhSachTacGia dstg = new DanhSachTacGia(dstgList);
+    DanhSachTacGia dstg = new DanhSachTacGia();
     DanhSachTheLoai dstl = new DanhSachTheLoai();
     DanhSachNhaXuatBan dsnxb = new DanhSachNhaXuatBan();
     DanhSachSach dss = new DanhSachSach(new ArrayList<>(), dstg,dstl, dsnxb);

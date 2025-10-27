@@ -5,7 +5,6 @@ import java.io.*;
 public class NhaXuatBan {
     private String ma_nxb;
     private String ten_nxb;
-    private ArrayList<Sach> dsSach = new ArrayList<>();
     public NhaXuatBan(){
         
     }
@@ -33,5 +32,7 @@ public class NhaXuatBan {
     public String toString() {
         return ma_nxb + " | " + ten_nxb;
     }
-
+    public String toFileString(){
+        return ma_nxb + ", " + ten_nxb;
+    }
 }

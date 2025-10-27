@@ -6,7 +6,6 @@ public class TheLoai {
     private String ma_the_loai;
     private String ten_the_loai;
     private String mo_ta;
-    private ArrayList<Sach> dsSach = new ArrayList<>();
     public TheLoai(){
         
     }
@@ -43,6 +42,7 @@ public class TheLoai {
     public String toString() {
         return ma_the_loai + " | " + ten_the_loai + " | " + mo_ta;
     }
-
-
+    public String toFileString(){
+        return ma_the_loai + ", " + ten_the_loai + ", " + mo_ta;
+    }
 }

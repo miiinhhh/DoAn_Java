@@ -90,7 +90,7 @@ public class Sach {
         this.ma_nxb = ma_nxb;
     }
 
-    public double getSo_luong() {
+    public int getSo_luong() {
         return so_luong;
     }
 

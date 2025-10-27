@@ -8,6 +8,9 @@ public class DanhSachNhaXuatBan {
     public void setDanhSachSach(DanhSachSach dss) {
         this.dss = dss;
     }
+    public ArrayList<NhaXuatBan> getDSNhaXuatBan() {  //cai nay la de them nxb -> them sach moi -> ma nxb nhap dung
+        return dsnxb;  
+    }
     public DanhSachNhaXuatBan(){
         
     }
@@ -39,7 +42,8 @@ public class DanhSachNhaXuatBan {
             FileWriter fw = new FileWriter(f);
             BufferedWriter bw = new BufferedWriter(fw);
             for(NhaXuatBan nxb : dsnxb){
-                bw.write(nxb.toString()+"\n");
+                bw.write(nxb.toFileString());
+                bw.newLine();
             }
             bw.close();
         }catch(Exception ex){
@@ -138,6 +142,13 @@ public class DanhSachNhaXuatBan {
         GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
         System.out.println("Da them nha xuat ban moi co ma: " + nxb_moi.getMa_nxb());
     }
+    public void ThemNhaXuatBanCoMa(String ma_nxb){
+        Scanner sc = new Scanner(System.in);
+        NhaXuatBan nxb_moi = NhapThongTinNhaXuatBanCoThamSo(ma_nxb);
+        dsnxb.add(nxb_moi);
+        GhiFileNhaXuatBan("src/main/java/com/example/NhaXuatBan.txt");
+        System.out.println("Da them nha xuat ban moi co ma: " + nxb_moi.getMa_nxb());
+    }
     public void ThemNhaXuatBan(){
         Scanner sc = new Scanner(System.in);
         NhaXuatBan nxb_moi = NhapThongTinNhaXuatBan();
@@ -146,7 +157,7 @@ public class DanhSachNhaXuatBan {
         System.out.println("Da them nha xuat moi co ma: " + nxb_moi.getMa_nxb());
         System.out.println("Nhap it nhat 1 quyen sach cho nha xuat ban nay: ");
         while(true){
-            Sach sach_moi = dss.NhapThongTinSach();
+            Sach sach_moi = dss.NhapThongTinSachKhiThemNXB(nxb_moi.getMa_nxb());
             sach_moi.setMa_nxb(nxb_moi.getMa_nxb());
             dss.ThemSachTheoMa(sach_moi);
             dss.GhiFileSach("src/main/java/com/example/Sach.txt");

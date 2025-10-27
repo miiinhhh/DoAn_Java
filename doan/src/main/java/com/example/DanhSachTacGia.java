@@ -8,7 +8,9 @@ public class DanhSachTacGia {
     public void setDanhSachSach(DanhSachSach dss) {
         this.dss = dss;
     }
-
+    public ArrayList<TacGia> getDSTacGia() {  //cai nay la de them tac gia -> them sach moi -> ma tac gia nhap dung
+        return dstg;  
+    }
     public DanhSachTacGia(){
         
     }
@@ -42,7 +44,8 @@ public class DanhSachTacGia {
             FileWriter fw = new FileWriter(f);
             BufferedWriter bw = new BufferedWriter(fw);
             for(TacGia tg : dstg){
-                bw.write(tg.toString()+"\n");
+                bw.write(tg.toFileString());
+                bw.newLine();
             }
             bw.close();
         }catch(Exception ex){
@@ -143,7 +146,7 @@ public class DanhSachTacGia {
         System.out.println("Da them tac gia moi co ma: " + tac_gia_moi.getMa_tac_gia());
         System.out.println("Nhap it nhat 1 quyen sach cho tac gia nay: ");
         while(true){
-            Sach sach_moi = dss.NhapThongTinSach();
+            Sach sach_moi = dss.NhapThongTinSachKhiThemTacGia(tac_gia_moi.getMa_tac_gia());
             sach_moi.setMa_tac_gia(tac_gia_moi.getMa_tac_gia());
             dss.ThemSachTheoMa(sach_moi);
             dss.GhiFileSach("src/main/java/com/example/Sach.txt");
@@ -155,6 +158,14 @@ public class DanhSachTacGia {
         }   
     }
     public void ThemTacGiaKhiSuaSachKhacMa(String ma_tg){
+        Scanner sc = new Scanner(System.in);
+        TacGia tac_gia_moi = NhapThongTinTacGiaCoThamSo(ma_tg);
+        dstg.add(tac_gia_moi);
+        GhiFileTacGia("src/main/java/com/example/TacGia.txt");
+        System.out.println("Da them tac gia moi co ma: " + tac_gia_moi.getMa_tac_gia());
+    }
+
+    public void ThemTacGiaCoMa(String ma_tg){
         Scanner sc = new Scanner(System.in);
         TacGia tac_gia_moi = NhapThongTinTacGiaCoThamSo(ma_tg);
         dstg.add(tac_gia_moi);

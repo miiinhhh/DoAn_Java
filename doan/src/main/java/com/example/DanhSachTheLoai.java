@@ -9,7 +9,9 @@ public class DanhSachTheLoai {
     public void setDanhSachSach(DanhSachSach dss) {
         this.dss = dss;
     }
-
+    public ArrayList<TheLoai> getDSTheLoai() {  //cai nay la de them the loai -> them sach moi -> ma the loai nhap dung
+        return dstl;  
+    }
     public DanhSachTheLoai(){
         
     }
@@ -41,7 +43,8 @@ public class DanhSachTheLoai {
             FileWriter fw = new FileWriter(f);
             BufferedWriter bw = new BufferedWriter(fw);
             for(TheLoai tl : dstl){
-                bw.write(tl.toString()+"\n");
+                bw.write(tl.toFileString());
+                bw.newLine();
             }
             bw.close();
         }catch(Exception ex){
@@ -64,6 +67,15 @@ public class DanhSachTheLoai {
         GhiFileTheLoai("src/main/java/com/example/TheLoai.txt");
         System.out.println("Da them the loai moi co ma: " + tl_moi.getMa_the_loai());
     }
+//
+    public void ThemTheLoaiCoMa(String ma_tl){
+        Scanner sc = new Scanner(System.in);
+        TheLoai tl_moi = NhapThongTinTheLoaiCoThamSo(ma_tl);
+        dstl.add(tl_moi);
+        GhiFileTheLoai("src/main/java/com/example/TheLoai.txt");
+        System.out.println("Da them the loai moi co ma: " + tl_moi.getMa_the_loai());
+    } 
+
     public void XemTheLoai(){
         for(TheLoai tl : dstl){
             System.out.println(tl);
@@ -154,7 +166,7 @@ public class DanhSachTheLoai {
         System.out.println("Da them the loai moi co ma: " + the_loai_moi.getMa_the_loai());
         System.out.println("Nhap it nhat 1 quyen sach cho the loai nay: ");
         while(true){
-            Sach sach_moi = dss.NhapThongTinSach();
+            Sach sach_moi = dss.NhapThongTinSachKhiThemTheLoai(the_loai_moi.getMa_the_loai());
             sach_moi.setMa_tac_gia(the_loai_moi.getMa_the_loai());
             dss.ThemSachTheoMa(sach_moi);
             dss.GhiFileSach("src/main/java/com/example/Sach.txt");

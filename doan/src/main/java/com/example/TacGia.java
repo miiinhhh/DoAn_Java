@@ -7,7 +7,6 @@ public class TacGia {
     private String ho_ten;
     private String gioi_tinh;
     private Ngay ngay_sinh;
-    private ArrayList<Sach> dsSach = new ArrayList<>(); //danh sach sach cua tac gia
     public TacGia(){
         
     }
@@ -49,9 +48,12 @@ public class TacGia {
     public void setNgay_sinh(Ngay ngay_sinh) {
         this.ngay_sinh = ngay_sinh;
     }
+    public String toFileString(){
+        return ma_tac_gia + ", " + ho_ten + ", " + gioi_tinh + ", " + ngay_sinh;
+    }
     @Override
     public String toString() {
-        return ma_tac_gia + " | " + ho_ten + " | " + gioi_tinh + " | " + ngay_sinh;
+        return ma_tac_gia + " | " + ho_ten + " | " + gioi_tinh + " | " + ngay_sinh.toString();
     }
 
 }

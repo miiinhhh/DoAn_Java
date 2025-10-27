@@ -1,12 +1,13 @@
 package com.example;
 import java.util.Scanner;
-public class NhanVien implements XuatThongTin {
-    private String mnv;
-    private String ho;
-    private String ten;
-    private String gioitinh;
-    private String ngaysinh;
-    private String sdt;
+
+public abstract class NhanVien implements XuatThongTin {
+    protected String mnv;
+    protected String ho;
+    protected String ten;
+    protected String gioitinh;
+    protected String ngaysinh;
+    protected String sdt;
 
     public NhanVien() {}
 
@@ -58,26 +59,11 @@ public class NhanVien implements XuatThongTin {
         System.out.print("Nhap Sdt: ");
         sdt = sc.nextLine();
     }
-
-    //public void xuat() {
-        //System.out.printf("| %-10s | %-10s | %-15s | %-9s | %-12s | %-15s |\n",
-                //mnv, ho, ten, gioitinh, ngaysinh, sdt);
-    //}
     @Override
-    public void xuat() {
-        System.out.printf("| %-10s | %-10s | %-15s | %-9s | %-12s | %-15s |\n",
-                mnv, ho, ten, gioitinh, ngaysinh, sdt);
-    }
-
+    public abstract void xuat();
+    
     @Override
     public String toString() {
         return mnv + "," + ho + "," + ten + "," + gioitinh + "," + ngaysinh + "," + sdt;
-    }
-
-    public static NhanVien parse(String line) {
-        String[] parts = line.split(",");
-        if (parts.length < 6) return null;
-        return new NhanVien(parts[0].trim(), parts[1].trim(), parts[2].trim(),
-                             parts[3].trim(), parts[4].trim(), parts[5].trim());
     }
 }

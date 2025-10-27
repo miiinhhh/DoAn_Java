@@ -1,4 +1,5 @@
 package com.example;
+
 import java.io.File;
 import java.io.PrintWriter;
 import java.time.LocalDate;
@@ -8,8 +9,8 @@ import java.util.Scanner;
 
 public class DanhSachNhanVien {
     private int n;
-    NhanVien[] ds = new NhanVien[0];
-    Scanner sc = new Scanner(System.in);
+    private NhanVien[] ds = new NhanVien[0];
+    private Scanner sc = new Scanner(System.in);
 
     public DanhSachNhanVien() {}
 
@@ -20,7 +21,7 @@ public class DanhSachNhanVien {
         ds = new NhanVien[n];
         for (int i = 0; i < n; i++) {
             System.out.println("Nhap thong tin nhan vien thu " + (i + 1) + ":");
-            NhanVien nv = new NhanVien();
+            NhanVien nv = new NhanVienThuVien();
             nv.nhap();
             ds[i] = nv;
         }
@@ -38,25 +39,19 @@ public class DanhSachNhanVien {
     }
 
     public void xuatd() {
-        System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+\n");
-        System.out.printf("| %-10s | %-10s | %-15s | %-9s | %-12s | %-15s |\n", "Ma Nv", "Ho", "Ten", "Gioi tinh", "Ngay sinh", "SDT");
-        System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+\n");
+        System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+------------+\n");
+        System.out.printf("| %-10s | %-10s | %-15s | %-9s | %-12s | %-15s | %-10s |\n", "Ma Nv", "Ho", "Ten", "Gioi tinh", "Ngay sinh", "SDT", "Chuc vu");
+        System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+------------+\n");
     }
 
     public void xuatc() {
-        System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+\n");
+        System.out.printf("+------------+------------+-----------------+-----------+--------------+-----------------+------------+\n");
     }
 
     public void sua() {
         System.out.print("Nhap ma nhan vien can sua: ");
         String ma = sc.nextLine();
-        int index = -1;
-        for (int i = 0; i < n; i++) {
-            if (ds[i].getMnv().equalsIgnoreCase(ma)) {
-                index = i;
-                break;
-            }
-        }
+        int index = timkiemma(ma);
         if (index == -1) {
             System.out.println("Khong tim thay nhan vien co ma " + ma);
             return;
@@ -67,11 +62,12 @@ public class DanhSachNhanVien {
             System.out.println("3. Sua gioi tinh");
             System.out.println("4. Sua ngay sinh");
             System.out.println("5. Sua sdt");
-            System.out.println("6. Thoat");
+            System.out.println("6. Sua chuc vu");
+            System.out.println("7. Thoat");
             System.out.print("Chon: ");
             int chon = sc.nextInt();
             sc.nextLine();
-            if (chon == 6) break;
+            if (chon == 7) break;
             switch (chon) {
                 case 1:
                     System.out.print("Nhap ho moi: ");
@@ -92,6 +88,14 @@ public class DanhSachNhanVien {
                 case 5:
                     System.out.print("Nhap sdt moi: ");
                     ds[index].setSdt(sc.nextLine());
+                    break;
+                case 6:
+                    if (ds[index] instanceof NhanVienThuVien) {
+                        System.out.print("Nhap chuc vu moi: ");
+                        ((NhanVienThuVien) ds[index]).setChucVu(sc.nextLine());
+                    } else {
+                        System.out.println("Loai nhan vien nay khong co chuc vu.");
+                    }
                     break;
                 default:
                     System.out.println("Lua chon khong hop le!");
@@ -129,15 +133,19 @@ public class DanhSachNhanVien {
     }
 
     private int tinhTuoi(NhanVien nv) {
-        LocalDate ns = LocalDate.parse(nv.getNgaySinh());
-        LocalDate now = LocalDate.now();
-        return Period.between(ns, now).getYears();
+        try {
+            LocalDate ns = LocalDate.parse(nv.getNgaySinh());
+            LocalDate now = LocalDate.now();
+            return Period.between(ns, now).getYears();
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
     public void thongKeTheoGioiTinh() {
         int nam = 0, nu = 0;
         for (NhanVien nv : ds) {
-            if (nv.getGioiTinh().equalsIgnoreCase("Nam"))
+            if ("Nam".equalsIgnoreCase(nv.getGioiTinh()))
                 nam++;
             else
                 nu++;
@@ -150,6 +158,7 @@ public class DanhSachNhanVien {
         int duoi30 = 0, bang30 = 0, tren30 = 0;
         for (NhanVien nv : ds) {
             int tuoi = tinhTuoi(nv);
+            if (tuoi < 0) continue;
             if (tuoi < 30) duoi30++;
             else if (tuoi == 30) bang30++;
             else tren30++;
@@ -161,8 +170,8 @@ public class DanhSachNhanVien {
 
     public void them() {
         while (true) {
-            NhanVien nv = new NhanVien();
             System.out.println("Nhap thong tin nhan vien moi:");
+            NhanVien nv = new NhanVienThuVien(); // nếu có thêm loại khác, hỏi chọn loại
             nv.nhap();
             ds = Arrays.copyOf(ds, n + 1);
             ds[n] = nv;
@@ -176,13 +185,7 @@ public class DanhSachNhanVien {
     public void xoa() {
         System.out.print("Nhap ma nhan vien can xoa: ");
         String ma = sc.nextLine();
-        int index = -1;
-        for (int i = 0; i < n; i++) {
-            if (ds[i].getMnv().equalsIgnoreCase(ma)) {
-                index = i;
-                break;
-            }
-        }
+        int index = timkiemma(ma);
         if (index == -1) {
             System.out.println("Khong tim thay nhan vien co ma " + ma);
             return;
@@ -215,9 +218,11 @@ public class DanhSachNhanVien {
             n = 0;
             ds = new NhanVien[0];
             while (f.hasNextLine()) {
-                String[] p = f.nextLine().split(",");
-                if (p.length == 6) {
-                    NhanVien nv = new NhanVien(p[0], p[1], p[2], p[3], p[4], p[5]);
+                String line = f.nextLine();
+                if (line.trim().isEmpty()) continue;
+                String[] p = line.split(",");
+                if (p.length >= 6) {
+                    NhanVienThuVien nv = NhanVienThuVien.parse(p);
                     ds = Arrays.copyOf(ds, n + 1);
                     ds[n] = nv;
                     n++;
@@ -228,6 +233,7 @@ public class DanhSachNhanVien {
             System.out.println("Loi doc file: " + e.getMessage());
         }
     }
+
     public void indanhsach() { xuat(); }
     public void ghifile() { ghiFile(); }
     public void docfile() { docFile(); }
@@ -267,11 +273,12 @@ public class DanhSachNhanVien {
         } while (chon != 0);
         sc.close();
     }
+
     public int timkiemma(String ma) {
         if (ma == null || ma.trim().isEmpty()) return -1;
         String cleanMa = ma.trim();
         for (int i = 0; i < n; i++) {
-            if (ds[i].getMnv().trim().equalsIgnoreCase(cleanMa)) {
+            if (ds[i].getMnv() != null && ds[i].getMnv().trim().equalsIgnoreCase(cleanMa)) {
                 return i;
             }
         }

@@ -73,15 +73,31 @@ public class PhieuMuon{
         return "Ngay khong hop le";
     }
 }
-    public void nhap(){
+    public void nhap(DanhSachDocGia dsDG, DanhSachNhanVien dsNV){
        Scanner sc = new Scanner(System.in);
        System.out.print("Nhap ma phieu muon: ");
        maphieumuon = sc.nextLine().trim();
-       System.out.print("Nhap ma doc gia: ");
-       madocgia = sc.nextLine().trim();
-       System.out.print("Nhap ma nhan vien: ");
-       manhanvien = sc.nextLine().trim();
-
+       
+       while(true){
+          System.out.print("Nhap ma doc gia: ");
+          madocgia = sc.nextLine().trim();
+          if(dsDG.timkiemma(madocgia) == -1){
+            System.out.println("Loi: Ma doc gia "+ madocgia +" khong ton tai. Vui long nhap lai !");
+          }
+          else {
+            break;
+          }
+       }
+       while(true){
+          System.out.println("Nhap ma nhan vien: ");
+          manhanvien = sc.nextLine().trim();
+          if(dsNV.timkiemma(manhanvien) == -1){
+            System.out.println("Loi: Ma nhan vien "+ manhanvien +" khong ton tai. Vui long nhap lai !!");
+          }
+          else{
+            break;
+          }
+       }
        while(true){
           System.out.print("Nhap ngay lap phieu (dd/MM/yyyy): ");
           String s = sc.nextLine().trim();

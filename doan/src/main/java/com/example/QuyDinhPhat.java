@@ -41,24 +41,38 @@ public class QuyDinhPhat{
     }
     Scanner sc = new Scanner(System.in);
     public void nhap(){
-        System.out.print("Nhap ma phat: ");
-        maphat = sc.nextLine().trim();
-        System.out.print("Nhap noi dung: ");
-        noidung = sc.nextLine().trim();
+        while(true) {
+            System.out.print("Nhap ma phat: ");
+            maphat = sc.nextLine().trim();
+            if (maphat.isEmpty()) {
+                System.out.println("Ma phat khong duoc de trong. Vui long nhap lai!");
+                continue;
+            }
+            break;
+        }
+        while(true) {
+            System.out.print("Nhap noi dung: ");
+            noidung = sc.nextLine().trim();
+            if (noidung.isEmpty()) {
+                System.out.println("Noi dung khong duoc de trong. Vui long nhap lai!");
+                continue;
+            }
+            break;
+        }
         while(true){
             System.out.print("Nhap so tien phat: ");
             String s = sc.nextLine().trim();
             try{
                 tienphat = Integer.parseInt(s);
-                if(tienphat < 0) {System.out.print("So tien phat khong am. Vui long nhap lai !!"); continue; }
+                if(tienphat < 0) {
+                    System.out.print("So tien phat khong am. Vui long nhap lai !!"); 
+                    continue; 
+                }
                 break;
-              } catch (NumberFormatException e){
+            } catch (NumberFormatException e){
                 System.out.println("Vui long nhap so nguyen. Nhap lai: ");
-              }
+            }
         }
-    }
-    @Override public String toString(){
-        return maphat+","+noidung+","+tienphat;
     }
     public String toFile(){
         return String.join(",", maphat == null ? "" : maphat, noidung == null ? "" : noidung, String.valueOf(tienphat));

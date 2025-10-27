@@ -81,8 +81,4 @@ public void nhap(DanhSachPhieuMuon dspm, DanhSachSach dss){
         String c = String.valueOf(soluong);
         return String.join(",", a, b, c);
      }
-    @Override
-     public String toString(){
-        return String.format("%s | %s | %d", maphieumuon, masach, soluong);
-     }
 }

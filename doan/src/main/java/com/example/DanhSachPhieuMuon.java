@@ -19,10 +19,10 @@
         }
         private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
-        public void nhap(){
+        public void nhap(DanhSachDocGia dsDG, DanhSachNhanVien dsNV){
             System.out.println("Nhap so luong phieu muon can nhap: ");
             int k;
-            int count = 0; 
+            int count = 0;
             while(true){
                 String s = sc.nextLine().trim();
                 try{
@@ -35,14 +35,15 @@
             }
             for(int i = 0; i < k; i++){
                 PhieuMuon newPhieu = new PhieuMuon();
-                System.out.println("\n--- Nhap thong tin phieu muon thu " + (i + 1) + " ---");
-                newPhieu.nhap();
-                if(timkiemma(newPhieu.getMaPhieuMuon()) != -1){ 
-                    System.out.println("Loi: Ma phieu muon da ton tai. Bo qua phieu nay.");
+                System.out.println("\n--- Nhap thong tin phieu muon thu " + (i + 1) + "---");
+                newPhieu.nhap(dsDG,dsNV);
+                if(timkiemma(newPhieu.getMaPhieuMuon()) != -1){
+                    System.out.println("Loi: Ma phieu muon"+ newPhieu.getMaPhieuMuon()+"da ton tai. Vui long nhap lai !!");
+                    i--;
                     continue;
                 }
                 ds = Arrays.copyOf(ds, ds.length + 1);
-                ds[ds.length - 1] = newPhieu;
+                ds[ds.length -1]= newPhieu;
                 count++;
             }
             System.out.println("Them thanh cong " + count + " phieu muon.");
@@ -57,10 +58,10 @@
             ds[ds.length-1] = new PhieuMuon(ht);
             System.out.println("Them thanh cong");
         }
-        public void them(){
+        public void them(DanhSachDocGia dsDG,DanhSachNhanVien dsNV){
             PhieuMuon newPhieu = new PhieuMuon();
             System.out.println("Nhap thong tin phieu muon can them: ");
-            newPhieu.nhap();
+            newPhieu.nhap(dsDG,dsNV);
             if(timkiemma(newPhieu.getMaPhieuMuon()) != -1 ){ 
                 System.out.println("Ma phieu muon da ton tai !! Khong them duoc.");
                 return;

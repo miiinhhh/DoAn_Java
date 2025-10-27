@@ -13,7 +13,7 @@
         public DanhSachPhieuPhat(DanhSachPhieuPhat other) {
             this.ds = Arrays.copyOf(other.ds,other.ds.length);
         }
-        public void nhap(DanhSachQuyDinhPhat dsqdp){
+        public void nhap(DanhSachQuyDinhPhat dsqdp,DanhSachDocGia dsdg, DanhSachPhieuMuon dspm){
             System.out.print("Nhap so luong phieu phat can nhap: ");
             int sl;
             int count = 0;
@@ -30,7 +30,7 @@
             for(int i = 0; i < sl; i++){ 
                 PhieuPhat newPhat = new PhieuPhat();
                 System.out.println("Nhap thong tin phieu phat thu " + (i + 1) + ":"); 
-                newPhat.nhap(dsqdp);
+                newPhat.nhap(dsqdp,dsdg,dspm);
                 if(timkiemma(newPhat.getMaPhieuPhat()) != -1){
                     System.out.println("Ma phieu phat da ton tai. Vui lòng nhập lại phiếu này.");
                     i--;
@@ -53,10 +53,10 @@
             System.out.println("Them thanh cong");
         }
 
-        public void them(DanhSachQuyDinhPhat dsqdp){
+        public void them(DanhSachQuyDinhPhat dsqdp,DanhSachDocGia dsdg, DanhSachPhieuMuon dspm){
             PhieuPhat newPhat = new PhieuPhat();
             System.out.println("Nhap thong tin phieu phat can them: ");
-            newPhat.nhap(dsqdp); 
+            newPhat.nhap(dsqdp,dsdg,dspm); 
             if(timkiemma(newPhat.getMaPhieuPhat()) != -1){
                 System.out.println("Ma phieu phat da ton tai !! Khong them duoc.");
                 return; 

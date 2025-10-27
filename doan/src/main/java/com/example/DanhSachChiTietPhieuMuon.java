@@ -42,6 +42,7 @@ public class DanhSachChiTietPhieuMuon {
         String mas = newCt.getMaSach();
         if(timkiemma(mapm, mas) != -1) {
             System.out.println("Loi: Chi tiet phieu muon [" + mapm + ", " + mas + "] da ton tai. Khong them.");
+            i--;
             continue; 
         }
         ds = Arrays.copyOf(ds, ds.length + 1);

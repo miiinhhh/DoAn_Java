@@ -183,8 +183,8 @@ public class QuanLyThuVien{
         System.out.println("| [5] Xoa phieu muon                              |");
         System.out.println("| [6] Tim kiem phieu muon (Ma PM/Ma DG)           |");
         System.out.println("+-------------------------------------------------+");
-        System.out.println("| [7] Ghi du lieu ra file Phieumuon.txt           |");
-        System.out.println("| [8] Doc du lieu tu file Phieumuon.txt           |");
+        System.out.println("| [7] Ghi du lieu ra file                         |");
+        System.out.println("| [8] Doc du lieu tu file                         |");
         System.out.println("+-------------------------------------------------+");
         System.out.println("| [0] Quay lai menu chinh                         |");
         System.out.println("+-------------------------------------------------+");
@@ -197,10 +197,10 @@ public class QuanLyThuVien{
         }
         switch (choice) {
             case 1:
-               dsphieumuon.nhap();
+               dsphieumuon.nhap(dsDG, dsNV);
                break;
             case 2:
-               dsphieumuon.them();
+               dsphieumuon.them(dsDG, dsNV);
                break;
             case 3:
                dsphieumuon.hienThiTatCa();
@@ -329,10 +329,10 @@ public void menuPhieuPhat(){
         }
         switch (choice) {
             case 1:
-                dspp.nhap(dsqdp);
+                dspp.nhap(dsqdp, dsDG, dsphieumuon);
                 break;
             case 2:
-                dspp.them(dsqdp);
+                dspp.them(dsqdp, dsDG, dsphieumuon);
                 break;
             case 3:
                 dspp.hienThiTatCa();

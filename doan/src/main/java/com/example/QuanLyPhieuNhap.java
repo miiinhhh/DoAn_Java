@@ -24,9 +24,9 @@ public class QuanLyPhieuNhap {
             System.out.println("Chua co phieu nhap.");
             return;
         }
-        System.out.println("+--------------------+-----------------+-----------------+-----------------+-----------------+");
+        System.out.println("+-----------------+-----------------+-------------------------+-----------------+");
         System.out.printf("%-15s %-15s %-15s %15s\n", "Ma PN", "Ngay", "Ten NCC", "Tong tien");
-        System.out.println("+--------------------+-----------------+-----------------+-----------------+-----------------+");
+        System.out.println("+-----------------+-----------------+-------------------------+-----------------+");
         for (int i = 0; i < soLuong; i++) {
             System.out.println(ds[i]);
             ds[i].hienThiChiTiet();
@@ -91,14 +91,14 @@ public class QuanLyPhieuNhap {
                     System.out.println(" Da cap nhat ma nha cung cap.");
                     break;
                 case 3:
-                    System.out.println(" GGoi den chuc nang sua chi tiet trong phieu nhap...");
-                    pn.suaChiTiet(sc); // ban can co ham nay trong class PhieuNhap
+                    System.out.println(" Goi den chuc nang sua chi tiet trong phieu nhap...");
+                    pn.suaChiTiet(sc);
                     break;
                 case 4:
                     System.out.println("Thoat menu sua.");
                     break;
                 default:
-                    System.out.println("LLua chon khong hop le!");
+                    System.out.println("Lua chon khong hop le!");
             }
         } while (chon != 4);
     }

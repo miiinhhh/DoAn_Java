@@ -51,7 +51,11 @@ public class PhieuNhap {
 
     @Override
     public String toString() {
-        return String.format("%-15s %-17s %-17s %17f", maPhieu, ngayNhap, (nhaCungCap!=null? nhaCungCap.getTenNCC() : "null"), tinhTongTien());
+        return String.format("%-15s %-17s %-17s %17f", 
+                     maPhieu, 
+                     ngayNhap, 
+                     (nhaCungCap != null ? nhaCungCap.getTenNCC() : "null"), 
+                     tinhTongTien());
     }
 
     public void hienThiChiTiet() {
@@ -59,11 +63,22 @@ public class PhieuNhap {
             System.out.println("   (Khong co chi tiet)");
             return;
         }
-        System.out.printf("   %-8s %-15s %6s %12s %12s\n", "Ma HH", "TTen hang", "SL", "Don gia", "Thanh tien");
+        System.out.println("   +----------+-----------------+------+------------+------------+");
+        System.out.printf("   | %-8s | %-15s | %-4s | %-10s | %-10s |\n", 
+                      "Ma HH", "Ten Hang", "SL", "Don Gia", "Thanh Tien");
+        System.out.println("   +----------+-----------------+------+------------+------------+");
         for (int i = 0; i < soChiTiet; i++) {
-            System.out.println("   " + chiTiet[i]);
+            ChiTietPhieuNhap ctpn = chiTiet[i];
+            System.out.printf("   | %-8s | %-15s | %4d | %10.2f | %10.2f |\n",
+                          ctpn.getMaHang(),
+                          ctpn.getTenHang(),
+                          ctpn.getSoLuong(),
+                          ctpn.getDonGia(),
+                          ctpn.getSoLuong() * ctpn.getDonGia());
         }
+        System.out.println("   +----------+-----------------+------+------------+------------+");
     }
+
     public void suaChiTiet(Scanner sc) {
         if (soChiTiet == 0) {
             System.out.println("Không có chi tiết nào để sửa!");

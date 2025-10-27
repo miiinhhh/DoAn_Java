@@ -17,12 +17,19 @@ public class QuanLyNhaCungCap {
             System.out.println("Chua co nha cung cap.");
             return;
         }
-        System.out.println("+--------------------+-----------------+-----------------+-----------------+-----------------+");
-        System.out.printf("%-15s %-17s %-17s %17s\n", "Ma NCC", "Ten NCC", "Dia chi", "SDT");
-        System.out.println("+--------------------+-----------------+-----------------+-----------------+-----------------+");
+        System.out.println("+-----------------+------------------------+-----------------------------+----------------+");
+        System.out.printf("| %-15s | %-22s | %-27s | %-14s |\n", 
+                      "Ma NCC", "Ten NCC", "Dia Chi", "SDT");
+        System.out.println("+-----------------+------------------------+-----------------------------+----------------+");
         for (int i = 0; i < soLuong; i++) {
-            System.out.println(ds[i]);
+            NhaCungCap ncc = ds[i];
+            System.out.printf("| %-15s | %-22s | %-27s | %-14s |\n",
+                          ncc.getMaNCC(),
+                          ncc.getTenNCC(),
+                          ncc.getDiaChi(),
+                          ncc.getSoDienThoai());
         }
+        System.out.println("+-----------------+------------------------+-----------------------------+----------------+");
     }
 
     public int timTheoMa(String ma) {

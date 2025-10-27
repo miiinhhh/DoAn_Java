@@ -1,3 +1,50 @@
-MP001,Tra sach tre han 1-3 ngay,10000 
-MP002,Tra sach tre han 4-7 ngay,20000 
-MP003,Tra sach tre han tren 7 ngay,30000
+MP001, Tra sach tre han 1-3 ngay, 10000
+MP002, Tra sach tre han 4-7 ngay, 20000
+MP003, Tra sach tre han tren 7 ngay, 30000
+MP004, Lam hong sach nhe, 15000
+MP005, Lam rach sach, 20000
+MP006, Mat sach, 50000
+MP007, Tra sach khong dung ma, 5000
+MP008, Quen the thu vien, 5000
+MP009, Mat the thu vien, 10000
+MP010, Lam uot sach, 10000
+MP011, Tra sach dung han, 0
+MP012, Tre han 1 ngay, 5000
+MP013, Tre han 2 ngay, 8000
+MP014, Tre han 3 ngay, 10000
+MP015, Tre han 5 ngay, 15000
+MP016, Tre han 6 ngay, 18000
+MP017, Tre han 7 ngay, 20000
+MP018, Tre han 10 ngay, 25000
+MP019, Tre han 15 ngay, 30000
+MP020, Tre han 30 ngay, 50000
+MP021, Mat sach quy hiem, 100000
+MP022, Lam mat bia sach, 8000
+MP023, Lam nham sach, 3000
+MP024, Lam lem muc, 5000
+MP025, Quen tra sach, 20000
+MP026, Mat sach giao trinh, 50000
+MP027, Tre han 2 tuan, 40000
+MP028, Tre han 1 thang, 60000
+MP029, Lam rach nhieu trang, 25000
+MP030, Lam mat phieu muon, 5000
+MP031, Tra nham sach, 3000
+MP032, Mat tem sach, 2000
+MP033, Lam bong sach, 1000
+MP034, Lam cong sach, 2000
+MP035, Tre han 5 ngay, 15000
+MP036, Tre han 6 ngay, 18000
+MP037, Tre han 7 ngay, 20000
+MP038, Tre han 8 ngay, 22000
+MP039, Tre han 9 ngay, 25000
+MP040, Tre han 10 ngay, 28000
+MP041, Tre han 11 ngay, 30000
+MP042, Tre han 12 ngay, 32000
+MP043, Tre han 13 ngay, 34000
+MP044, Tre han 14 ngay, 36000
+MP045, Tre han 15 ngay, 40000
+MP046, Tre han 16 ngay, 42000
+MP047, Tre han 17 ngay, 44000
+MP048, Tre han 18 ngay, 46000
+MP049, Tre han 19 ngay, 48000
+MP050, Tre han 20 ngay, 50000

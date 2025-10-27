@@ -1,2 +1,50 @@
-NXB01, Nha Xuat Ban Giao Duc 
+NXB01, Nha Xuat Ban Giao Duc
 NXB02, Nha Xuat Ban Khoa Hoc
+NXB03, Nha Xuat Ban Dai Hoc Quoc Gia
+NXB04, Nha Xuat Ban Tre
+NXB05, Nha Xuat Ban Van Hoa
+NXB06, Nha Xuat Ban Tu Dien Bach Khoa
+NXB07, Nha Xuat Ban Tong Hop
+NXB08, Nha Xuat Ban Giao Thong
+NXB09, Nha Xuat Ban Tu Nhien Xa Hoi
+NXB10, Nha Xuat Ban Lao Dong
+NXB11, Nha Xuat Ban My Thuat
+NXB12, Nha Xuat Ban Cong Thuong
+NXB13, Nha Xuat Ban Xay Dung
+NXB14, Nha Xuat Ban Nong Nghiep
+NXB15, Nha Xuat Ban Y Hoc
+NXB16, Nha Xuat Ban Phu Nu
+NXB17, Nha Xuat Ban Kim Dong
+NXB18, Nha Xuat Ban Ha Noi
+NXB19, Nha Xuat Ban Tien Phong
+NXB20, Nha Xuat Ban Tin Hoc
+NXB21, Nha Xuat Ban Cong An Nhan Dan
+NXB22, Nha Xuat Ban Quan Doi Nhan Dan
+NXB23, Nha Xuat Ban Thong Tin Truyen Thong
+NXB24, Nha Xuat Ban Khoa Hoc Tu Nhien
+NXB25, Nha Xuat Ban Khoa Hoc Xa Hoi
+NXB26, Nha Xuat Ban Kinh Te
+NXB27, Nha Xuat Ban The Gioi
+NXB28, Nha Xuat Ban Thanh Nien
+NXB29, Nha Xuat Ban Nhi Dong
+NXB30, Nha Xuat Ban Van Hoc
+NXB31, Nha Xuat Ban Giao Thong Van Tai
+NXB32, Nha Xuat Ban Dia Ly
+NXB33, Nha Xuat Ban Ngoai Ngu
+NXB34, Nha Xuat Ban Moi Truong
+NXB35, Nha Xuat Ban Cong Nghe
+NXB36, Nha Xuat Ban Khoa Hoc Ky Thuat
+NXB37, Nha Xuat Ban Nha Nam
+NXB38, Nha Xuat Ban Hoa Hoc
+NXB39, Nha Xuat Ban Kinh Te Quoc Dan
+NXB40, Nha Xuat Ban Quoc Gia
+NXB41, Nha Xuat Ban Hoi Nha Van
+NXB42, Nha Xuat Ban Thanh Pho Ho Chi Minh
+NXB43, Nha Xuat Ban Da Nang
+NXB44, Nha Xuat Ban Can Tho
+NXB45, Nha Xuat Ban Hai Phong
+NXB46, Nha Xuat Ban Nam Dinh
+NXB47, Nha Xuat Ban Bac Giang
+NXB48, Nha Xuat Ban Quang Ninh
+NXB49, Nha Xuat Ban Hue
+NXB50, Nha Xuat Ban Vinh

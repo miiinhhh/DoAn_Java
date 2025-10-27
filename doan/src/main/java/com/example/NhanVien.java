@@ -1,6 +1,6 @@
 package com.example;
 import java.util.Scanner;
-public class NhanVien {
+public class NhanVien implements XuatThongTin {
     private String mnv;
     private String ho;
     private String ten;
@@ -59,6 +59,11 @@ public class NhanVien {
         sdt = sc.nextLine();
     }
 
+    //public void xuat() {
+        //System.out.printf("| %-10s | %-10s | %-15s | %-9s | %-12s | %-15s |\n",
+                //mnv, ho, ten, gioitinh, ngaysinh, sdt);
+    //}
+    @Override
     public void xuat() {
         System.out.printf("| %-10s | %-10s | %-15s | %-9s | %-12s | %-15s |\n",
                 mnv, ho, ten, gioitinh, ngaysinh, sdt);

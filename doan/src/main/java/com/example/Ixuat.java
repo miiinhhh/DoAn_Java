@@ -1,6 +1,6 @@
 package com.example;
 
-public interface XuatThongTin {
+public interface Ixuat {
     void xuat();
 }
 

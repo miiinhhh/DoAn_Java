@@ -1,7 +1,7 @@
 package com.example;
 import java.util.Scanner;
 
-public abstract class NhanVien implements XuatThongTin {
+public abstract class NhanVien implements Ixuat {
     protected String mnv;
     protected String ho;
     protected String ten;

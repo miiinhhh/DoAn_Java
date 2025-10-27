@@ -1,4 +1,5 @@
 package com.example;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class QuanLyThuVien{
     private DanhSachSach dss=new DanhSachSach();
@@ -20,7 +21,12 @@ public class QuanLyThuVien{
 
     private static Scanner sc=new Scanner(System.in);
 
-    public QuanLyThuVien() {}
+    public QuanLyThuVien() {
+        this.dss = new DanhSachSach(new ArrayList<>(), this.dstg, this.dstl, this.dsnxb);
+        this.dstg.setDanhSachSach(this.dss);
+        this.dstl.setDanhSachSach(this.dss);
+        this.dsnxb.setDanhSachSach(this.dss);
+    }
     public QuanLyThuVien(DanhSachSach dss, DanhSachTacGia dstg, DanhSachTheLoai dstl, DanhSachPhieuMuon dsphieumuon, DanhSachChiTietPhieuMuon dschitietphieumuon, DanhSachDocGia dsdg, DanhSachNhanVien dsnv, DanhSachPhieuPhat dsphieuphat, DanhSachQuyDinhPhat dsquydinhphat, DanhSachNhaXuatBan dsnxb, QuanLyNhaCungCap qlNCC, QuanLyPhieuNhap qlPN) {
         this.dss = dss;
         this.dstg = dstg;

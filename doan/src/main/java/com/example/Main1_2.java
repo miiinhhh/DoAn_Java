@@ -8,7 +8,7 @@ public class Main1_2 {
     DanhSachTheLoai dstl = new DanhSachTheLoai();
     DanhSachNhaXuatBan dsnxb = new DanhSachNhaXuatBan();
     DanhSachSach dss = new DanhSachSach(new ArrayList<>(), dstg,dstl, dsnxb);
-    dstg.setDanhSachSach(dss);  // gán ngược lại
+    dstg.setDanhSachSach(dss);  
     dstl.setDanhSachSach(dss);
     dsnxb.setDanhSachSach(dss);
 

@@ -2,7 +2,7 @@ package com.example;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class QuanLyThuVien{
-    private DanhSachSach dss=new DanhSachSach();
+    private static DanhSachSach dss=new DanhSachSach();
     private DanhSachTacGia dstg=new DanhSachTacGia();
     private DanhSachTheLoai dstl=new DanhSachTheLoai();
     private DanhSachPhieuMuon dsphieumuon=new DanhSachPhieuMuon();
@@ -746,12 +746,31 @@ public void menuPhieuPhat(){
                 String maHang = sc.nextLine();
                 System.out.print("Nhap ten hang: ");
                 String ten = sc.nextLine();
+                System.out.print("Nhap ma the loai: ");
+                String maTL = sc.nextLine();
+                System.out.print("Nhap ma tac gia: ");
+                String maTG = sc.nextLine();
+                System.out.print("Nhap ma NXB: ");
+                String maNXB = sc.nextLine();
                 System.out.print("Nhap so luong: ");
                 int sl = Integer.parseInt(sc.nextLine());
+                System.out.print("Nhap ngay xuat ban (dd/MM/yyyy): ");
+                String strNgay = sc.nextLine();
+                Ngay ngayXB = Ngay.parseNgay(strNgay);
                 System.out.print("Nhap don gia: ");
                 double dg = Double.parseDouble(sc.nextLine());
-                pn.themChiTiet(new ChiTietPhieuNhap(ma, maHang, sl, dg));
+                pn.themChiTiet(new ChiTietPhieuNhap(ma, maHang, sl, dg));  
 
+                int vt = dss.timkiemma(maHang);
+                    if (vt == -1) {
+                Sach s = new Sach(maHang, ten, maTL, maTG, maNXB, sl, ngayXB);
+                dss.ThemSachTheoMa(s);
+                    } else {
+                Sach s = dss.layTheoViTri(vt);
+                s.setSo_luong(s.getSo_luong() + sl);
+                System.out.println("Da cap nhat so luong cho sach: " + s.getTen_sach());
+            }
+                System.out.println("Da them sach moi: " + ten);
                 System.out.print("Nhap tiep? (y/n): ");
                 if (!sc.nextLine().equalsIgnoreCase("y")) break;
             }
@@ -796,8 +815,7 @@ public void menuPhieuPhat(){
                 int sl = Integer.parseInt(sc.nextLine());
                 System.out.print("Nhap don gia: ");
                 double dg = Double.parseDouble(sc.nextLine());
-                pn.themChiTiet(new ChiTietPhieuNhap(ma, maHang, sl, dg));
-
+                pn.themChiTiet(new ChiTietPhieuNhap(maHang, ten, sl, dg));
                 System.out.print("Nhap tiep? (y/n): ");
                 if (!sc.nextLine().equalsIgnoreCase("y")) break;
             }

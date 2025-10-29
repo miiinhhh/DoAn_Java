@@ -909,5 +909,11 @@ public class DanhSachSach {
             }
             return -1;
     }
+    public Sach layTheoViTri(int vt) {
+    if (vt >= 0 && vt < dss.size()) {
+        return dss.get(vt);
+    }
+    return null;
+}
 }
 
